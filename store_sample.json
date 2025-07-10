@@ -1,0 +1,1232 @@
+[
+{
+    "_id": "5K24o7vC94LP4crFKlp5n6",
+    "card_description": "A classic thrift store with a wide variety of clothing and accessories for all ages, offering affordable options and frequent sales, with new items added daily.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Thrift NYC in the Upper East Side is a classic thrift store focusing on providing a wide array of pre-loved clothing and accessories. It's a go-to spot for budget-conscious shoppers seeking unique finds and everyday essentials. The store prides itself on being a community staple with a constantly rotating selection.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store has a typical thrift store layout with racks of clothing organized by type and some by color, providing a browsing experience where rummaging is part of the fun. The ambiance is casual and unpretentious with a focus on utility over luxury. The staff is generally helpful and laid back, providing assistance when requested but not hovering.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>You'll find a diverse range of clothing for all genders and ages, including vintage pieces, current styles, and basics. The quality varies, but many items are in good condition considering their pre-owned status. The prices are generally very affordable, making it possible to find great deals, especially on everyday wear.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>The store's commitment to accessibility and its ever-changing inventory makes each visit a new experience. Regular sales and markdowns further enhance the value proposition. They also often have a small selection of household items, making it more than just clothing.</p>\n    </div>\n  </div>",
+    "editorial_summary": null,
+    "formatted_address": "305 E 84th St, New York, NY 10028, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:00 AM – 7:00 PM",
+        "Tuesday: 11:00 AM – 7:00 PM",
+        "Wednesday: 11:00 AM – 7:00 PM",
+        "Thursday: 11:00 AM – 7:00 PM",
+        "Friday: 11:00 AM – 7:00 PM",
+        "Saturday: 11:00 AM – 7:00 PM",
+        "Sunday: 11:00 AM – 6:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7764744,
+      "lng": -73.9521011
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.1,
+      "user_ratings_total": 11
+    },
+    "name": "Thrift NYC",
+    "neighborhood": {
+      "name": "Upper East Side",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJLXsaB39ZwokRgC28JnOZNYo",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      },
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=9959034870849875328",
+    "website": ""
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlp6M6",
+    "card_description": "This boutique offers carefully curated, high-quality vintage clothing and accessories, with a focus on stylish and wearable pieces that are priced for value.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\">OVERVIEW</h4>\n      <p>Pimbeche Vintage is a curated vintage clothing and accessories boutique located in Long Island City/Astoria. It specializes in sourcing high-quality, unique pieces from various eras, offering a diverse selection for both men and women. The store is known for its emphasis on timeless style and wearable vintage rather than just collector's items.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">ATMOSPHERE & EXPERIENCE</h4>\n       <p>The store has a chic and inviting ambiance, with clothing racks neatly organized by style and color. The space is well-lit and uncluttered, making browsing easy and enjoyable. Staff are often present and helpful, providing styling advice while being unobtrusive, creating a laid-back and comfortable shopping environment.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">MERCHANDISE HIGHLIGHTS</h4>\n      <p>Pimbeche carries a wide range of vintage clothing, including dresses, tops, pants, jackets, and outerwear. The quality is generally very good, with items often in excellent or gently used condition, and the store focuses on finding well-made pieces that still have life in them. Prices range from mid-tier to higher end, reflecting the quality and uniqueness of the items, but overall good value for the price is generally offered.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">UNIQUE FEATURES</h4>\n      <p>Pimbeche's distinct focus is on wearable vintage, showcasing pieces that fit into modern wardrobes easily. The selection is thoughtfully curated, with a keen eye for stylish cuts and patterns, rather than just the oldest or most obscure. They also occasionally stock vintage shoes and accessories to complete a look.</p>\n    </div>\n  </div>",
+    "editorial_summary": null,
+    "formatted_address": "22-73 28th St, Astoria, NY 11105, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: Closed",
+        "Tuesday: Closed",
+        "Wednesday: Closed",
+        "Thursday: 11:00 AM – 7:00 PM",
+        "Friday: 11:00 AM – 7:00 PM",
+        "Saturday: 11:00 AM – 7:00 PM",
+        "Sunday: 12:00 – 6:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7757331,
+      "lng": -73.9141553
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.9,
+      "user_ratings_total": 14
+    },
+    "name": "Pimbeche Vintage",
+    "neighborhood": {
+      "name": "Long Island City/Astoria",
+      "region": {
+        "name": "Queens",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJqX9nHE5fwokR5Ptguu1OYSA",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=2333232864895761380",
+    "website": "http://www.pimbechevintage.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlp8h6",
+    "card_description": "Find curated, high-quality vintage clothing and accessories at reasonable prices. The constantly rotating stock ensures you'll discover unique pieces each visit.",
+    "description": "<div class=\"store-description\">\n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n    <p>This thrift store in the Gramercy Park/Murray Hill area offers a curated selection of vintage clothing and accessories. It focuses on providing a mix of classic and trendy pieces, making it a go-to spot for those seeking unique and stylish finds. Their specialty lies in offering well-preserved vintage items that cater to a range of tastes.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n    <p>The store has a cozy and welcoming atmosphere, with neatly organized racks and displays that make browsing easy and enjoyable. The shopping experience is generally relaxed, with friendly staff who are helpful but not overbearing. The space feels inviting and encourages customers to take their time exploring the different sections.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n    <p>You can expect to find a wide variety of vintage clothing including dresses, blouses, jackets, and pants from different eras. They also carry accessories like bags, hats, and jewelry. The quality of items is generally good, with most pieces showing minimal wear and tear, and prices are reasonable, reflecting the quality and uniqueness of the merchandise.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n    <p>This store stands out for its consistent stock of high-quality, curated vintage pieces, making it different from your typical thrift shop. They also tend to rotate their stock regularly, offering fresh finds on a regular basis. The store's staff has a good eye for current trends, helping to curate pieces that align with contemporary fashion.</p>\n  </div>\n</div>",
+    "editorial_summary": "Nonprofit vintage-goods flagship store benefiting the United Jewish Council of the East Side.",
+    "formatted_address": "286 3rd Ave, New York, NY 10010, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 10:30 AM – 7:00 PM",
+        "Tuesday: 10:30 AM – 7:00 PM",
+        "Wednesday: 10:30 AM – 7:00 PM",
+        "Thursday: 10:30 AM – 7:00 PM",
+        "Friday: 10:30 AM – 4:15 PM",
+        "Saturday: Closed",
+        "Sunday: 10:30 AM – 7:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7384699,
+      "lng": -73.9836457
+    },
+    "metrics": {
+      "price_level": 1,
+      "rating": 4.5,
+      "user_ratings_total": 159
+    },
+    "name": "Vintage Thrift Shop",
+    "neighborhood": {
+      "name": "Gramercy Park and Murray Hill",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJsaQ-haBZwokR0aJu7GN01ac",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=12093700346890592977",
+    "website": "http://www.vintagethriftshop.org/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlp8r6",
+    "card_description": "A curated boutique offering high-quality vintage clothing and accessories with a focus on unique and well-preserved pieces. Expect to find higher-end, often designer, vintage items in excellent condition.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>PDL Vintage in Hell's Kitchen is a curated vintage boutique specializing in unique and well-preserved clothing and accessories. This shop is known for its focus on high-quality pieces with a distinct aesthetic appeal. The store offers a focused selection, rather than an overwhelming variety, ensuring each item is carefully chosen.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store has a well-organized and inviting layout, with racks that are easy to navigate. The ambiance leans towards a refined boutique feel, creating a pleasant and relaxed shopping experience. The staff is attentive, offering assistance without being overbearing, and are knowledgeable about the history and details of their merchandise.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>PDL Vintage primarily carries clothing and accessories from various eras, ranging from the mid-20th century to more recent vintage styles. The items are generally in excellent condition, often appearing like-new, indicating careful selection and maintenance. Prices are on the higher end for a vintage store, reflecting the quality, uniqueness, and curation of their inventory.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>What sets PDL Vintage apart is its commitment to sourcing high-end vintage pieces with an emphasis on specific aesthetics, often including designer pieces and unique finds. They provide a focused, curated collection, different from the typical thrifting experience. The best time to visit is during off-peak hours to have a more personalized experience and more access to the staff for their expertise.</p>\n    </div>\n  </div>",
+    "editorial_summary": null,
+    "formatted_address": "441 W 49th St, New York, NY 10019, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 12:00 – 7:00 PM",
+        "Tuesday: 12:00 – 7:00 PM",
+        "Wednesday: 12:00 – 7:00 PM",
+        "Thursday: 12:00 – 7:00 PM",
+        "Friday: 12:00 – 7:00 PM",
+        "Saturday: 12:00 – 7:00 PM",
+        "Sunday: 12:00 – 7:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7638146,
+      "lng": -73.9910426
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 5,
+      "user_ratings_total": 30
+    },
+    "name": "PDL Vintage",
+    "neighborhood": {
+      "name": "Hell's Kitchen",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJs1GZZkRZwokRyeJovP6niTQ",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=3785741674306134729",
+    "website": "https://www.instagram.com/pdlvntg/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlp9f6",
+    "card_description": "Discover curated vintage and unique second-hand clothing and accessories at reasonable prices, while supporting local artists and designers within the community. Check out rotating inventory and pop-up events.",
+    "description": "<div class=\"store-description\">\n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n    <p>Harlem Creative Collective is a vibrant hub for curated vintage and unique second-hand finds in the Inwood and Washington Heights area. More than just a store, it’s a community space supporting local artists and featuring a constantly rotating selection of clothing and accessories. The focus is on providing stylish, pre-loved pieces that have a story to tell.</p>\n  </div>\n    \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n    <p>The shop has a welcoming, eclectic vibe, often playing music and buzzing with friendly energy. The layout encourages browsing and discovery, with items displayed thoughtfully and creatively. Staff is usually passionate about the store's mission, providing helpful advice and styling tips.</p>\n  </div>\n    \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n    <p>Merchandise ranges from vintage clothing, often featuring unique patterns and silhouettes, to upcycled and reworked pieces created by local designers. Condition is generally good, with any noticeable flaws clearly indicated. Prices are generally reasonable, offering a good balance between quality and affordability for unique finds.</p>\n  </div>\n    \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>What sets this shop apart is its support of the local creative community, with a curated selection of items from independent designers. They also frequently host events and pop-ups, adding to the experience. It's best to visit regularly, as the inventory is consistently changing.</p>\n  </div>\n</div>",
+    "editorial_summary": null,
+    "formatted_address": "Garden Level, 736 St Nicholas Ave, New York, NY 10031, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 12:00 – 7:00 PM",
+        "Tuesday: 12:00 – 7:00 PM",
+        "Wednesday: 12:00 – 7:00 PM",
+        "Thursday: 12:00 – 7:00 PM",
+        "Friday: 12:00 – 7:00 PM",
+        "Saturday: 12:00 – 7:00 PM",
+        "Sunday: Closed"
+      ]
+    },
+    "location": {
+      "lat": 40.8252206,
+      "lng": -73.9436719
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 5,
+      "user_ratings_total": 101
+    },
+    "name": "Harlem Creative Collective",
+    "neighborhood": {
+      "name": "Inwood and Washington Heights",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJfwQD4b33wokRYIuw3b8vtZo",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=11147868953730124640",
+    "website": "http://www.instagram.com/harlemcreativecollective/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlp9u6",
+    "card_description": "This shop offers curated, high-quality vintage clothing and accessories from the 20th century, spanning several decades with a concentration on designer items. It's the perfect place to find unique, well-preserved pieces with moderate to high price points.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Hamlet's Vintage is a curated vintage store with locations in both Greenwich Village and Soho, offering a selection of clothing and accessories spanning several decades. It stands out for its well-preserved and carefully chosen pieces, giving shoppers access to unique finds from the past.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store exudes a sophisticated vintage vibe, often with a tidy and organized layout that makes browsing easy and enjoyable. The shopping experience is generally calm and unhurried, and staff are typically knowledgeable and helpful without being overly intrusive.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>Hamlet's primarily carries vintage clothing for men and women, ranging from the 1920s through the 1990s with a focus on 60's, 70's and 80s styles. Items are typically in very good to excellent condition, reflecting the store's curated approach, and prices tend to be moderate to high, reflecting both quality and the area.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n       <p>The dual-location presence in both Greenwich Village and Soho provides customers with accessible vintage shopping across two iconic neighborhoods. They often have unique pieces not found elsewhere due to their curated focus and it is a good place to find designer vintage items. Weekday visits generally offer a quieter shopping experience.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Vintage shop for clothes & accessories from the 1940s to the 1980s for men & women, plus home decor.",
+    "formatted_address": "161 West 4th Street, New York, NY 10014, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 12:00 – 8:00 PM",
+        "Tuesday: 12:00 – 8:00 PM",
+        "Wednesday: 12:00 – 8:00 PM",
+        "Thursday: 12:00 – 8:00 PM",
+        "Friday: 12:00 – 8:00 PM",
+        "Saturday: 12:00 – 8:00 PM",
+        "Sunday: 12:00 – 8:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7320751,
+      "lng": -74.0012393
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.4,
+      "user_ratings_total": 97
+    },
+    "name": "Hamlet's Vintage",
+    "neighborhood": {
+      "name": "Greenwich Village and Soho",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJsX_C8JFZwokRdvDqBv7y8Gc",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Antique",
+        "slug": "antique"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=7489753353168810102",
+    "website": "http://www.hamletsvintage.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpAO6",
+    "card_description": "Shop carefully selected designer consignment pieces, including clothing, shoes, and accessories, at discounted prices in a boutique setting. New arrivals are frequent.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Trunk Show Designer Consignment in Central Harlem specializes in high-end, gently-used designer clothing, shoes, and accessories. It's a curated consignment boutique focused on providing luxury items at more accessible price points, offering an opportunity to discover unique pieces from renowned designers.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store has a refined and well-organized layout, creating a boutique-like atmosphere rather than a typical thrift shop. The space is clean, brightly lit, and the clothing is displayed attractively. Staff are generally attentive and knowledgeable, providing a more personalized shopping experience.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>The merchandise primarily consists of designer labels across clothing, shoes, handbags, jewelry and other accessories. Items are generally in excellent condition, reflecting their high-end provenance, with price ranges typically reflecting the designer labels, but below retail. Expect to find everything from classic pieces to more trendy, current-season items.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>The store sets itself apart by offering a highly curated selection of designer goods, focusing on quality and condition. Trunk Show also has a strong online presence for local shopping, and regularly adds new inventory. This shop is a great location to find high-end fashion without the high-end price tag. </p>\n    </div>\n  </div>",
+    "editorial_summary": "High-quality vintage fashions & accessories for men & women displayed in sleek & elegant environs.",
+    "formatted_address": "275-277 W 113th St, New York, NY 10026, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: Closed",
+        "Tuesday: 2:00 – 7:30 PM",
+        "Wednesday: 2:00 – 7:30 PM",
+        "Thursday: 2:00 – 7:30 PM",
+        "Friday: 2:00 – 7:30 PM",
+        "Saturday: 2:00 – 7:30 PM",
+        "Sunday: Closed"
+      ]
+    },
+    "location": {
+      "lat": 40.802421,
+      "lng": -73.95636
+    },
+    "metrics": {
+      "price_level": 3,
+      "rating": 4.7,
+      "user_ratings_total": 6
+    },
+    "name": "Trunk Show Designer Consignment",
+    "neighborhood": {
+      "name": "Central Harlem",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJNSuPFBf2wokR6c_6gJV0X9w",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      },
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=15879538996594528233",
+    "website": "https://www.trunkshowconsignment.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpAY6",
+    "card_description": "Offering carefully selected, stylish vintage clothing and accessories from the 1950s-1990s, this store is known for its quality finds and frequent promotions.",
+    "description": "<div class=\"store-description\">\n  <div class=\"section\">\n    <h4 class=\"section-title\">OVERVIEW</h4>\n    <p>Stray Vintage is a well-curated vintage shop in Long Island City/Astoria, specializing in clothing and accessories from the 1950s through the 1990s. It stands out for its focus on wearable, stylish pieces with a particular emphasis on unique patterns and textures. The store is a go-to for those seeking quality vintage garments that are both fashionable and in excellent condition.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\">ATMOSPHERE & EXPERIENCE</h4>\n    <p>The store has a cozy and inviting atmosphere with carefully organized racks and displays that make browsing easy. The space is well-lit, and the music creates a relaxed vibe. Staff members are knowledgeable about vintage fashion and provide helpful, friendly assistance without being overly pushy. </p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\">MERCHANDISE HIGHLIGHTS</h4>\n    <p>The inventory includes a wide array of vintage dresses, tops, pants, skirts, jackets, and coats, often featuring bold prints and unique detailing.  They also carry a good selection of accessories like handbags, jewelry, and scarves. Prices are generally moderate, reflecting the quality and condition of the pieces, offering good value for unique and stylish finds.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\">UNIQUE FEATURES</h4>\n    <p>Stray Vintage carefully selects each item, ensuring that pieces are not only stylish but also in good wearable condition, offering a more curated selection than many large thrift stores. New items are frequently added, making it worth regular visits.  They are also known for their frequent sales and promotions, making vintage more accessible.</p>\n  </div>\n</div>",
+    "editorial_summary": "Quirky selection of vintage jewelry, clothes & midcentury modern furniture, plus gifts & more.",
+    "formatted_address": "4809 Skillman Ave, Sunnyside, NY 11104, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: Closed",
+        "Tuesday: Closed",
+        "Wednesday: Closed",
+        "Thursday: 12:00 – 6:00 PM",
+        "Friday: 12:00 – 6:00 PM",
+        "Saturday: 11:00 AM – 7:00 PM",
+        "Sunday: 11:00 AM – 6:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7464515,
+      "lng": -73.9157253
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.7,
+      "user_ratings_total": 50
+    },
+    "name": "Stray Vintage",
+    "neighborhood": {
+      "name": "Long Island City/Astoria",
+      "region": {
+        "name": "Queens",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJ2SohiSBfwokRg9YEQBkS0rU",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=13101554165631735427",
+    "website": "http://www.instagram.com/strayvintage"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpAi6",
+    "card_description": "Find curated, pre-owned designer clothing and accessories in excellent condition at this upscale consignment boutique; they authenticate all items.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Michael's Luxury Consignment is an upscale consignment boutique nestled in the Upper East Side, specializing in pre-owned designer clothing and accessories. It offers a curated selection of high-end pieces, providing a more sustainable way to access luxury fashion.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store boasts a sophisticated and elegant atmosphere, mirroring the quality of its merchandise. Racks are neatly organized, making it easy to browse. The staff is knowledgeable, helpful, and discreet, offering a personalized shopping experience.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>The boutique carries a wide range of designer items, including clothing, handbags, shoes, and jewelry from iconic fashion houses. Items are meticulously inspected for quality and are generally in excellent condition. Prices are reflective of the designer brands and quality, but represent a significant value compared to original retail prices.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>Michael's focuses exclusively on luxury brands, setting it apart from more general consignment stores. They have a reputation for carefully authenticating items, ensuring customers are purchasing genuine designer pieces. It's best to visit during weekdays for a less crowded experience and first access to newly arrived merchandise.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Family-owned mainstay known as a go-to for secondhand designer-label fashions & accessories.",
+    "formatted_address": "1125 Madison Ave, New York, NY 10028, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: Closed",
+        "Tuesday: 11:00 AM – 6:00 PM",
+        "Wednesday: 11:00 AM – 6:00 PM",
+        "Thursday: 11:00 AM – 6:00 PM",
+        "Friday: 11:00 AM – 6:00 PM",
+        "Saturday: 11:00 AM – 6:00 PM",
+        "Sunday: Closed"
+      ]
+    },
+    "location": {
+      "lat": 40.7795805,
+      "lng": -73.9595564
+    },
+    "metrics": {
+      "price_level": 3,
+      "rating": 4.6,
+      "user_ratings_total": 250
+    },
+    "name": "Michael's Luxury Consignment",
+    "neighborhood": {
+      "name": "Upper East Side",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJCz0I15VYwokRWwJb-C1gnhA",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      },
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=1197500301483639387",
+    "website": "http://www.michaelsconsignment.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpB76",
+    "card_description": "A packed antique shop with mid-range to high-end prices, offering unique furniture, collectibles, and home goods.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Alexander Antique Shop is a treasure-filled shop specializing in unique antiques, vintage items, and collectibles. The store is known for its wide selection of furniture, decorative pieces, and rare finds, catering to collectors and those seeking distinctive home goods.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store is described as a packed, treasure-filled space with items displayed throughout the store. The atmosphere is relaxed and inviting, with friendly staff that are known to be helpful, and the store has a unique and interesting feel.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>Alexander Antique Shop offers a variety of antique and vintage furniture, decorative items, and collectibles. Expect to find a range of unique items with an emphasis on quality, condition, and historical significance. Prices range from mid-range to high-end, reflecting the uniqueness and rarity of certain items.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>The Alexander Antique Shop offers an experience that goes beyond typical secondhand shopping. The store has a unique feel with its packed interior and unique offerings. This shop is a great place for collectors and those looking for truly unique, one of a kind pieces.</p>\n    </div>\n  </div>",
+    "editorial_summary": null,
+    "formatted_address": "47 Bruckner Blvd, Bronx, NY 10454, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:00 AM – 5:00 PM",
+        "Tuesday: 11:00 AM – 5:00 PM",
+        "Wednesday: 11:00 AM – 5:00 PM",
+        "Thursday: 11:00 AM – 5:00 PM",
+        "Friday: 11:00 AM – 6:00 PM",
+        "Saturday: 11:00 AM – 6:00 PM",
+        "Sunday: 11:00 AM – 6:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.806869,
+      "lng": -73.926838
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 3.9,
+      "user_ratings_total": 13
+    },
+    "name": "Alexander Antique Shop",
+    "neighborhood": {
+      "name": "Hunts Point and Mott Haven",
+      "region": {
+        "name": "Bronx",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJe6Fxd931wokR1V5opmp_8Mc",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Furniture",
+        "slug": "furniture"
+      },
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=14407155303993335509",
+    "website": ""
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpBM6",
+    "card_description": "Find high-quality, timeless vintage clothing from various eras, carefully curated for a unique selection; the prices reflect the condition and rarity of the items.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Bedford Vintage in Greenpoint is a curated vintage store that focuses on timeless, high-quality clothing and accessories. It stands out for its selection of well-preserved pieces from various eras, catering to those who appreciate classic styles. The store's specialization is in carefully chosen vintage garments, avoiding fast fashion trends.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store has a warm and inviting atmosphere, with racks and displays that are thoughtfully arranged.  It's a pleasant shopping experience with a focus on browsing and discovery, rather than a fast-paced turnover. The staff is generally friendly and helpful, but allows customers to explore at their own pace.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n       <p>The inventory primarily consists of vintage clothing from the mid-20th century onward, including dresses, blouses, outerwear, and select accessories. The quality of the items is typically very good, with careful attention paid to condition. Prices can range from moderate to higher, reflecting the quality and rarity of the pieces.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>Bedford Vintage's curated selection is its biggest draw; they handpick items based on style and quality, ensuring a unique shopping experience. They also have a good online presence and do occasional special sales, making it worth following their social media. The best times to visit are weekdays when there are fewer crowds.</p>\n    </div>\n  </div>",
+    "editorial_summary": null,
+    "formatted_address": "207 Bedford Ave, Brooklyn, NY 11211, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 12:00 – 8:00 PM",
+        "Tuesday: 12:00 – 8:00 PM",
+        "Wednesday: 12:00 – 8:00 PM",
+        "Thursday: 12:00 – 8:00 PM",
+        "Friday: 12:00 – 8:00 PM",
+        "Saturday: 12:00 – 8:00 PM",
+        "Sunday: 12:00 – 8:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7168606,
+      "lng": -73.9585526
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.9,
+      "user_ratings_total": 28
+    },
+    "name": "Bedford Vintage",
+    "neighborhood": {
+      "name": "Williamsburg",
+      "region": {
+        "name": "Brooklyn",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJ4XP30wpZwokR3oLSZp7jKws",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=804987227885175518",
+    "website": ""
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpBW6",
+    "card_description": "This community-focused thrift store offers a constantly changing selection of affordable clothing, housewares, and more, with proceeds benefiting a local charity. Expect to find new items every visit.",
+    "description": "<div class=\"store-description\">\n  <div class=\"section\">\n    <h4 class=\"section-title\">OVERVIEW</h4>\n    <p>Steinway Thrift Shop is a well-established thrift store in Long Island City/Astoria, known for its community-focused mission and wide array of donated goods. This shop stands out for its consistently stocked inventory and proceeds that benefit a local charitable organization. It's primarily a general thrift store, offering a bit of everything at budget-friendly prices.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\">ATMOSPHERE & EXPERIENCE</h4>\n    <p>The store has a classic thrift store layout, with racks of clothing, shelves of household goods, and designated areas for furniture and other larger items. The atmosphere is generally bustling and friendly, and the shopping experience is straightforward with items organized by type. The staff is often a mix of volunteers and part-time employees who are helpful and eager to assist shoppers.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\">MERCHANDISE HIGHLIGHTS</h4>\n    <p>You'll find a diverse range of items, from clothing for all ages and genders to kitchenware, books, toys, and small home furnishings. The quality of items varies as it is a thrift store, but you can often discover great finds in good, usable condition. Prices are generally very affordable, reflecting the donated nature of the inventory, and offering excellent value.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\">UNIQUE FEATURES</h4>\n     <p>What sets this shop apart is its strong ties to the local community, with all proceeds directly benefiting a nearby charitable organization. Because of their reliance on community donations, inventory turns over quickly, meaning you may find different items each time you visit. Weekday mornings are a good bet for those looking for a calmer shopping experience.</p>\n  </div>\n</div>",
+    "editorial_summary": null,
+    "formatted_address": "32-36 Steinway St, Astoria, NY 11103, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:00 AM – 8:00 PM",
+        "Tuesday: 11:00 AM – 8:00 PM",
+        "Wednesday: 11:00 AM – 8:00 PM",
+        "Thursday: 11:00 AM – 8:00 PM",
+        "Friday: 11:00 AM – 8:00 PM",
+        "Saturday: 11:00 AM – 8:00 PM",
+        "Sunday: 11:00 AM – 7:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7580876,
+      "lng": -73.9199461
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 3.7,
+      "user_ratings_total": 80
+    },
+    "name": "Steinway Thrift Shop",
+    "neighborhood": {
+      "name": "Long Island City/Astoria",
+      "region": {
+        "name": "Queens",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJjzDtDDtfwokRPsaPE8zaplo",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=6532148879583856190",
+    "website": ""
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpBg6",
+    "card_description": "This store specializes in authenticated, pre-owned luxury designer goods, providing a high-end experience with curated selections, and offering both online and retail locations.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>The RealReal on the Upper East Side is a luxury consignment store specializing in authenticated designer goods. It offers a curated selection of high-end fashion, jewelry, watches, and home goods, making it a premier destination for pre-owned luxury items.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store boasts a modern and elegant boutique-like setting, far removed from the typical thrift store vibe. The layout is organized and easy to navigate, with well-lit display cases and racks. Staff are typically knowledgeable and attentive, providing assistance with browsing and authentication inquiries.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>The store features a wide array of designer clothing, handbags, shoes, jewelry, and watches from renowned brands. Items are generally in excellent condition, having been thoroughly inspected and authenticated before being placed for sale. Prices reflect the luxury nature of the items, ranging from mid-range to very high.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>The RealReal's key differentiator is its emphasis on authentication, ensuring buyers are purchasing genuine designer goods. The store also offers online sales and consignment services, in addition to its retail location. They often host special events and promotions, making certain times more beneficial to visit.</p>\n    </div>\n  </div>",
+    "editorial_summary": null,
+    "formatted_address": "870 Madison Ave, New York, NY 10021, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 10:00 AM – 6:00 PM",
+        "Tuesday: 10:00 AM – 6:00 PM",
+        "Wednesday: 10:00 AM – 6:00 PM",
+        "Thursday: 10:00 AM – 6:00 PM",
+        "Friday: 10:00 AM – 6:00 PM",
+        "Saturday: 10:00 AM – 6:00 PM",
+        "Sunday: 11:00 AM – 5:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7710116,
+      "lng": -73.966233
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 2.8,
+      "user_ratings_total": 119
+    },
+    "name": "The RealReal",
+    "neighborhood": {
+      "name": "Upper East Side",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJ68gW5ARZwokRNzpPBzuf2jE",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      },
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=3592358728655911479",
+    "website": "http://www.therealreal.com/madison?utm_source=gmb&utm_medium=Yext"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpBq6",
+    "card_description": "This shop offers a curated collection of high-quality designer vintage clothing, with a focus on wearable and stylish pieces in excellent condition. Expect mid-range to higher prices reflecting the quality and rarity of each garment.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Amarcord Vintage Fashion in Greenpoint is a meticulously curated vintage boutique that specializes in high-quality, designer and unique garments spanning several decades. They are known for their well-edited selection and focus on stylish and wearable vintage pieces.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store boasts a clean and well-organized layout, making it easy to browse their impressive collection. The ambiance is upscale and sophisticated, with each garment displayed thoughtfully. The staff are knowledgeable and provide attentive yet unobtrusive service, creating a relaxed shopping experience.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>Amarcord carries a wide range of vintage clothing for both men and women, including designer labels, unique statement pieces, and classic staples. The condition of the items is generally excellent, reflecting the care taken in selecting and maintaining their inventory. Prices range from mid-range to high, reflecting the quality, condition, and rarity of the vintage items.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>What truly sets Amarcord apart is their focus on curated, designer vintage and their reputation for being a reliable source for exceptional pieces. They are also known for sourcing very specific, often hard-to-find vintage items.  They frequently rotate their inventory, so there is always something new to discover, and they offer personal styling services.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Compact boutique specializing in vintage European designer apparel & accessories in mod surrounds.",
+    "formatted_address": "223 Bedford Ave, Brooklyn, NY 11211, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: Closed",
+        "Tuesday: 12:00 – 7:00 PM",
+        "Wednesday: 12:00 – 7:00 PM",
+        "Thursday: 12:00 – 7:00 PM",
+        "Friday: 12:00 – 7:00 PM",
+        "Saturday: 12:00 – 7:00 PM",
+        "Sunday: 12:00 – 7:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7163624,
+      "lng": -73.9591566
+    },
+    "metrics": {
+      "price_level": 3,
+      "rating": 4.1,
+      "user_ratings_total": 101
+    },
+    "name": "Amarcord Vintage Fashion",
+    "neighborhood": {
+      "name": "Williamsburg",
+      "region": {
+        "name": "Brooklyn",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJSWViHF5ZwokRyi57w3oYCKg",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=12107954513730285258",
+    "website": "http://www.amarcordvintagefashion.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpC06",
+    "card_description": "This upscale thrift store offers a carefully curated selection of designer and vintage clothing and home goods, with proceeds supporting a vital social cause. Visit during the week for a less crowded and more curated shopping experience.",
+    "description": "<div class=\"store-description\">\n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n    <p>Housing Works Thrift Shop in Yorkville offers a carefully curated selection of secondhand goods, standing out with its commitment to social justice. It distinguishes itself through a focus on higher-end donations, often including designer and vintage pieces alongside everyday essentials.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n    <p>The Yorkville location is well-organized and brightly lit, creating a more boutique-like ambiance compared to some other thrift stores. The shopping experience is generally relaxed and pleasant, with staff who are helpful and knowledgeable about the merchandise. It feels more like browsing a small department store than rummaging through bins.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n    <p>Expect to find a wide range of clothing, shoes, accessories, and home goods, with a noticeable presence of designer labels and quality vintage items. While prices are slightly higher than some other thrift options, the quality and condition of the items typically reflect the value. Expect to find some treasures amongst the racks and shelves.</p>\n  </div>\n  \n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n    <p>What sets Housing Works apart is its mission: all proceeds support their work combatting HIV/AIDS and homelessness. Their Yorkville location often receives unique and high-quality donations due to its affluent neighborhood, making it a fantastic place to find a special item. Weekday visits are recommended for a less crowded experience.</p>\n  </div>\n</div>",
+    "editorial_summary": null,
+    "formatted_address": "1730 2nd Ave, New York, NY 10128, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:00 AM – 7:00 PM",
+        "Tuesday: 11:00 AM – 7:00 PM",
+        "Wednesday: 11:00 AM – 7:00 PM",
+        "Thursday: 11:00 AM – 7:00 PM",
+        "Friday: 11:00 AM – 7:00 PM",
+        "Saturday: 11:00 AM – 7:00 PM",
+        "Sunday: 12:00 – 5:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7802379,
+      "lng": -73.9497456
+    },
+    "metrics": {
+      "price_level": 1,
+      "rating": 4.2,
+      "user_ratings_total": 87
+    },
+    "name": "Housing Works Thrift Shop - Yorkville",
+    "neighborhood": {
+      "name": "Upper East Side",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJiy4pMqVYwokRvlAoJVQ6ki0",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=3283751211381575870",
+    "website": "https://www.housingworks.org/locations/yorkville-thrift-shop-second-avenue-90th-street"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpCA6",
+    "card_description": null,
+    "description": null,
+    "editorial_summary": null,
+    "formatted_address": "900 E 163rd St, Bronx, NY 10459, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 9:00 AM – 7:00 PM",
+        "Tuesday: 9:00 AM – 7:00 PM",
+        "Wednesday: 9:00 AM – 7:00 PM",
+        "Thursday: 9:00 AM – 7:00 PM",
+        "Friday: 9:00 AM – 7:00 PM",
+        "Saturday: 9:00 AM – 6:00 PM",
+        "Sunday: 9:00 AM – 7:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.8208378,
+      "lng": -73.8981855
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.7,
+      "user_ratings_total": 12
+    },
+    "name": "163 Exotic Second Hand Store",
+    "neighborhood": {
+      "name": "Hunts Point and Mott Haven",
+      "region": {
+        "name": "Bronx",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJJSGEIa31wokR5UZrOaWbQn0",
+    "primaryCategory": null,
+    "secondaryCategories": null,
+    "url": "https://maps.google.com/?cid=9025947737139136229",
+    "website": ""
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpCo6",
+    "card_description": "This large, well-organized thrift store offers a wide selection of gently used clothing, household items, and more at affordable prices in a clean, pleasant environment. Expect a consistent flow of new inventory and a retail-like experience.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\">OVERVIEW</h4>\n      <p>On the Road Again Corporation in Woodside/Maspeth is a large, well-organized thrift store with a focus on offering a diverse range of pre-owned goods. Unlike some thrift stores that feel cluttered, this shop strives for a retail-like experience, offering something for everyone while prioritizing quality and cleanliness.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">ATMOSPHERE & EXPERIENCE</h4>\n      <p>The store is spacious and well-lit, with clothing racks neatly organized by type and size. The atmosphere is generally calm and conducive to browsing, more like a department store than a traditional thrift shop. Staff are usually present and available to assist, contributing to a positive shopping experience.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">MERCHANDISE HIGHLIGHTS</h4>\n      <p>The store carries a wide variety of items, including clothing for all ages, shoes, accessories, household goods, books, toys, and some furniture. While not strictly vintage, many items are gently used and in good condition, with prices that generally represent good value. You'll find a range of brands from everyday names to more recognizable labels.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">UNIQUE FEATURES</h4>\n       <p>A key feature of this store is its commitment to cleanliness and organization, which makes the shopping experience much more enjoyable. They are known for having a steady flow of new items, making each visit potentially rewarding. Weekday mornings and early afternoons tend to be the least crowded times to shop.</p>\n    </div>\n  </div>",
+    "editorial_summary": null,
+    "formatted_address": "65-01 Grand Ave, Maspeth, NY 11378, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 10:00 AM – 6:00 PM",
+        "Tuesday: Closed",
+        "Wednesday: Closed",
+        "Thursday: 10:00 AM – 6:00 PM",
+        "Friday: 10:00 AM – 6:00 PM",
+        "Saturday: 10:00 AM – 6:00 PM",
+        "Sunday: 11:00 AM – 6:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.723304,
+      "lng": -73.900941
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.7,
+      "user_ratings_total": 76
+    },
+    "name": "On the Road Again Corporation",
+    "neighborhood": {
+      "name": "Woodside/Maspeth",
+      "region": {
+        "name": "Queens",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJEe1JyfJewokREXh594_m0IM",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      },
+      {
+        "name": "Furniture",
+        "slug": "furniture"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=9498345120131020817",
+    "website": ""
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpCy6",
+    "card_description": "Find carefully curated designer clothing, handbags, and accessories in excellent condition at this high-end consignment store, known for its selection of unique and often rare pieces. Expect prices to be lower than retail, but still reflecting the luxury labels and quality.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>INA is a high-end designer consignment store with two locations in NYC (Chelsea and Clinton). Known for its meticulously curated collection, it offers a wide range of luxury clothing, handbags, shoes, and accessories from both current and vintage designers. It's a go-to for finding unique and often rare pieces at a fraction of their original retail price.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The stores have an upscale boutique feel with well-organized racks and displays that make browsing easy and enjoyable. The atmosphere is refined and calm, similar to a high-end retail store, rather than a typical thrift shop. Staff are typically attentive, knowledgeable about designer brands, and offer assistance as needed.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>INA specializes in high-end designer goods including clothing, handbags, shoes, and accessories from labels like Chanel, Gucci, Prada, and Hermès, among others. Items are typically in excellent condition, having been carefully vetted for quality before being accepted for consignment. Prices are generally lower than original retail but still reflect the luxury labels and quality of the merchandise.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>INA's strength lies in its focus on designer pieces and its strict selection process which ensures only high quality, authentic items are offered. They have a reputation for carrying coveted and hard-to-find pieces from past collections. While prices can be high compared to standard thrift, the store offers a high value proposition for luxury goods at reduced prices.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Consignment shop offering secondhand designer clothes, shoes & accessories for men & women.",
+    "formatted_address": "207 W 18th St, New York, NY 10011, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 12:00 – 7:00 PM",
+        "Tuesday: 12:00 – 7:00 PM",
+        "Wednesday: 12:00 – 7:00 PM",
+        "Thursday: 12:00 – 7:00 PM",
+        "Friday: 12:00 – 7:00 PM",
+        "Saturday: 12:00 – 7:00 PM",
+        "Sunday: 12:00 – 7:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7414565,
+      "lng": -73.9982497
+    },
+    "metrics": {
+      "price_level": 3,
+      "rating": 4.1,
+      "user_ratings_total": 46
+    },
+    "name": "INA",
+    "neighborhood": {
+      "name": "Chelsea and Clinton",
+      "region": {
+        "name": "Manhattan",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJV1zGZ7xZwokR_PJCVzHQ3xc",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=1720322493014799100",
+    "website": "https://inanyc.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpNc6",
+    "card_description": "This buy-sell-trade clothing store offers a curated selection of trendy and vintage apparel at accessible prices. Sell your gently used clothing for cash or store credit.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Beacon's Closet in Williamsburg is a well-established and curated buy-sell-trade clothing store, known for its trendy, fashion-forward selection. It's a go-to spot for those looking for unique pieces and designer finds at accessible prices, focusing on contemporary and vintage apparel.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store is typically bustling, with racks packed tightly and a high energy vibe. It can feel a little overwhelming, but the hunt is part of the fun. The staff are generally efficient and helpful, focusing on processing transactions and managing inventory more than providing personalized styling advice.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>They carry a wide range of clothing and accessories, from well-known brands to lesser-known vintage finds. The quality is generally good, with items inspected before they are put out for sale. Prices can range from very affordable to moderate for some designer pieces, offering good value for fashion-conscious shoppers.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>Beacon's Closet operates on a buy-sell-trade model, allowing customers to sell their own gently used clothing for either cash or store credit, making it a great place to both shop and refresh your wardrobe. Weekday visits are generally less crowded than weekends, offering a more relaxed shopping experience. They also are known for accepting on-trend pieces, leading to a rotating and relevant selection.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Retail location offering vintage & modern second-hand clothing for men & women, including trades.",
+    "formatted_address": "23 Bogart St, Brooklyn, NY 11206, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:00 AM – 8:00 PM",
+        "Tuesday: 11:00 AM – 8:00 PM",
+        "Wednesday: 11:00 AM – 8:00 PM",
+        "Thursday: 11:00 AM – 8:00 PM",
+        "Friday: 11:00 AM – 8:00 PM",
+        "Saturday: 11:00 AM – 8:00 PM",
+        "Sunday: 11:00 AM – 8:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7040462,
+      "lng": -73.9332974
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4,
+      "user_ratings_total": 368
+    },
+    "name": "Beacon's Closet",
+    "neighborhood": {
+      "name": "Williamsburg",
+      "region": {
+        "name": "Brooklyn",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJ0dPnJwFcwokRs06-Bew8G0o",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      },
+      {
+        "name": "Consignment",
+        "slug": "consignment"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=5339928767584161459",
+    "website": "http://www.beaconscloset.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpNm6",
+    "card_description": "Discover carefully curated, stylish vintage clothing from the 60s-90s at this fashion-forward boutique.  Note that all sales are final.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Monk Vintage in Greenpoint is a meticulously curated vintage clothing store, specializing in unique and stylish pieces from various eras. It's a go-to destination for those seeking high-quality, fashion-forward vintage finds rather than standard thrift store fare. </p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store has a boutique-like atmosphere, with carefully organized racks and displays that make browsing easy and enjoyable. The space is well-lit, clean, and feels more upscale than a typical thrift store. The staff is generally helpful and knowledgeable about the inventory, offering assistance without being overbearing.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>Monk Vintage focuses primarily on clothing, with a wide selection of dresses, tops, jackets, and pants, often dating from the 1960s through the 1990s. The quality of the items is generally high, with pieces selected for their condition and style. Prices are higher than typical thrift stores, reflecting the quality, curation, and unique nature of the inventory, but are generally seen as fair for the vintage market.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n      <p>Monk Vintage is known for its regularly updated and consistently stylish collection, offering a reliable source for fashion-forward vintage. They are also known for their strong social media presence and have a following of fashion enthusiasts. They also do not offer any returns or exchanges, so shoppers should carefully inspect their purchases before committing.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Eclectic, colorful shop packed with an organized range of used shoes, clothing & accessories.",
+    "formatted_address": "500 Driggs Ave, Brooklyn, NY 11211, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:30 AM – 7:30 PM",
+        "Tuesday: 11:30 AM – 7:30 PM",
+        "Wednesday: 11:30 AM – 7:30 PM",
+        "Thursday: 11:30 AM – 7:30 PM",
+        "Friday: 11:30 AM – 8:00 PM",
+        "Saturday: 11:30 AM – 8:00 PM",
+        "Sunday: 12:00 – 7:30 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7184652,
+      "lng": -73.9550716
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 3.8,
+      "user_ratings_total": 160
+    },
+    "name": "Monk Vintage",
+    "neighborhood": {
+      "name": "Williamsburg",
+      "region": {
+        "name": "Brooklyn",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJI5ceaFxZwokRKGA3jcG8rnA",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=8119634717679509544",
+    "website": "https://www.instagram.com/monkvintage/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpNw6",
+    "card_description": "A community thrift shop offering a wide selection of gently-used clothing, housewares, and unique finds, with frequent inventory updates and affordable prices.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\">OVERVIEW</h4>\n      <p>Gotham Thrift Shop in Middle Village/Ridgewood is a community-focused thrift store offering a wide array of pre-loved goods. It's a go-to destination for those seeking budget-friendly finds and unique vintage items. The store specializes in clothing, housewares, and a surprising selection of books and collectibles.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">ATMOSPHERE & EXPERIENCE</h4>\n      <p>The store is well-organized and brightly lit, creating a pleasant shopping environment, and there's a palpable sense of community. The staff are typically friendly and helpful, contributing to a welcoming and relaxed atmosphere, where browsing and exploring are encouraged.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">MERCHANDISE HIGHLIGHTS</h4>\n      <p>Gotham Thrift Shop boasts a diverse collection of clothing for all ages and styles, with regular rotation of stock. You can find everything from everyday basics to vintage apparel, alongside a selection of kitchenware, home decor, and interesting books. While items are pre-owned, they are generally in good to very good condition, and priced very affordably.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\">UNIQUE FEATURES</h4>\n      <p>What sets Gotham apart is its consistently updated inventory and strong local following, ensuring a fresh experience with each visit. The store frequently has special promotions and occasional sales, making it a haven for savvy shoppers. Weekday mornings are usually the best time for a quieter shopping experience with the newest items.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Vintage furniture, fixtures, jewelry, electronics & collectibles at this family-run thrift shop.",
+    "formatted_address": "6101 Myrtle Ave, Ridgewood, NY 11385, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:00 AM – 8:00 PM",
+        "Tuesday: 11:00 AM – 8:00 PM",
+        "Wednesday: 11:00 AM – 8:00 PM",
+        "Thursday: 11:00 AM – 8:00 PM",
+        "Friday: 10:00 AM – 8:00 PM",
+        "Saturday: 10:00 AM – 8:00 PM",
+        "Sunday: 11:00 AM – 7:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7009931,
+      "lng": -73.8944815
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.5,
+      "user_ratings_total": 210
+    },
+    "name": "Gotham Thrift Shop",
+    "neighborhood": {
+      "name": "Middle Village/Ridgewood",
+      "region": {
+        "name": "Queens",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJCdROyKxdwokRsgcq_AjbJmc",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      },
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=7432869066658416562",
+    "website": "http://www.gothamthriftny.com/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpO66",
+    "card_description": "This affordable thrift store offers a wide range of pre-loved clothing, accessories, and housewares, with 96 cents of every dollar spent benefiting the AIDS Healthcare Foundation.",
+    "description": "<div class=\"store-description\">\n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n      <p>Out of the Closet in Boerum Hill is a vibrant thrift store with a mission: to support the AIDS Healthcare Foundation. It stands out for its commitment to both affordability and social responsibility, offering a wide range of pre-loved goods. This store is a go-to for those seeking unique finds while contributing to a meaningful cause.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n      <p>The store has a generally organized and bustling atmosphere, with racks and shelves full of items to browse. The shopping experience is generally positive, with a feel that's both community-oriented and efficient, though it can get crowded at peak times. Staff are usually friendly and helpful, focusing on smooth transactions.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n      <p>You'll find a diverse selection of clothing, from everyday wear to vintage pieces, plus shoes, accessories, and household items. The quality varies, as is typical with thrift, but there are many well-maintained and gently used items. Prices are generally very affordable, making it a great place to find bargains.</p>\n    </div>\n    \n    <div class=\"section\">\n      <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n       <p>What truly distinguishes this location is that 96 cents of every dollar spent directly funds the AIDS Healthcare Foundation. Additionally, it's known for consistent stock rotation, meaning there are often new items to uncover. Weekday mornings are generally the best times to shop for a less crowded experience.</p>\n    </div>\n  </div>",
+    "editorial_summary": "Thrift store selling clothing, books & housewares; profits go to the AIDS Healthcare Foundation.",
+    "formatted_address": "475 Atlantic Ave, Brooklyn, NY 11217, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 10:00 AM – 7:00 PM",
+        "Tuesday: 10:00 AM – 7:00 PM",
+        "Wednesday: 10:00 AM – 7:00 PM",
+        "Thursday: 10:00 AM – 7:00 PM",
+        "Friday: 10:00 AM – 7:00 PM",
+        "Saturday: 10:00 AM – 7:00 PM",
+        "Sunday: 10:00 AM – 6:00 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.6861264,
+      "lng": -73.9820168
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.3,
+      "user_ratings_total": 224
+    },
+    "name": "Out of the Closet - Brooklyn",
+    "neighborhood": {
+      "name": "Boerum Hill",
+      "region": {
+        "name": "Brooklyn",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJpRmGswdbwokRd3lg3nmA1Z4",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      },
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=11445195288942246263",
+    "website": "https://outofthecloset.org/"
+  },
+  {
+    "_id": "5K24o7vC94LP4crFKlpOG6",
+    "card_description": "Carefully curated selection of trendy, gently used clothing and accessories at affordable prices; frequent new arrivals and special sales make this store worth a visit.",
+    "description": "<div class=\"store-description\">\n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>OVERVIEW</strong></h4>\n    <p>This Greenpoint thrift store offers a curated selection of vintage and gently used clothing, accessories, and homewares. It's a go-to spot for those seeking unique, affordable finds with a focus on trendy and stylish pieces rather than just general donations.</p>\n  </div>\n\n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>ATMOSPHERE & EXPERIENCE</strong></h4>\n    <p>The store is well-organized with racks and shelves that make browsing easy and pleasant.  The vibe is relaxed and unpretentious, often with a background playlist.  Staff are typically helpful, but let shoppers browse freely without pressure.</p>\n  </div>\n\n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>MERCHANDISE HIGHLIGHTS</strong></h4>\n    <p>You'll find a diverse mix of clothing, from retro denim and leather jackets to flowy dresses and graphic tees.  Quality varies from good to excellent, with most items in wearable condition; prices are generally reasonable and reflect the age and condition of the items. Expect to pay a little more for higher quality or more unique pieces.</p>\n  </div>\n\n  <div class=\"section\">\n    <h4 class=\"section-title\"><strong>UNIQUE FEATURES</strong></h4>\n    <p>The store's main draw is its carefully curated selection, where someone clearly filters through the typical donations for more interesting styles. They have frequent new arrivals, so checking back often is rewarded. The store also occasionally runs special sales events.</p>\n  </div>\n</div>",
+    "editorial_summary": null,
+    "formatted_address": "905 Grand St, Brooklyn, NY 11211, USA",
+    "hours": {
+      "weekday_text": [
+        "Monday: 11:00 AM – 6:30 PM",
+        "Tuesday: 11:00 AM – 6:30 PM",
+        "Wednesday: 11:00 AM – 6:30 PM",
+        "Thursday: 11:00 AM – 6:30 PM",
+        "Friday: 11:00 AM – 6:30 PM",
+        "Saturday: 11:00 AM – 6:30 PM",
+        "Sunday: 11:00 AM – 6:30 PM"
+      ]
+    },
+    "location": {
+      "lat": 40.7127072,
+      "lng": -73.9380833
+    },
+    "metrics": {
+      "price_level": null,
+      "rating": 4.2,
+      "user_ratings_total": 21
+    },
+    "name": "NYC THRIFT STORE",
+    "neighborhood": {
+      "name": "Williamsburg",
+      "region": {
+        "name": "Brooklyn",
+        "parent": {
+          "name": "New York City"
+        }
+      }
+    },
+    "place_id": "ChIJ67Dwo51ZwokRtFVEGvDeRzY",
+    "primaryCategory": {
+      "name": "Second Hand",
+      "slug": "second-hand"
+    },
+    "secondaryCategories": [
+      {
+        "name": "Vintage",
+        "slug": "vintage"
+      },
+      {
+        "name": "Thrift",
+        "slug": "thrift"
+      }
+    ],
+    "url": "https://maps.google.com/?cid=3911339924208768436",
+    "website": ""
+  }
+]
