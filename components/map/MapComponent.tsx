@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { Store } from '@/lib/types'
@@ -20,6 +20,9 @@ interface MapComponentProps {
 export default function MapComponent({ stores, allStores, selectedStore, hoveredStore, onStoreSelect, onStoreHover }: MapComponentProps) {
   const map = useRef<mapboxgl.Map | null>(null)
   const markers = useRef<{ [key: string]: mapboxgl.Marker }>({})
+  
+  // Memoize store IDs to trigger effect properly when stores change
+  const storeIds = useMemo(() => stores.map(s => s._id), [stores])
   const [mapError, setMapError] = useState<string | null>(null)
   const [mapLoaded, setMapLoaded] = useState(false)
   const [mapContainer, setMapContainer] = useState<HTMLDivElement | null>(null)
@@ -149,10 +152,8 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
                 `)
             )
           
-          // Add to map
+          // Create marker but don't add to map yet (filtering will control visibility)
           if (map.current) {
-            marker.addTo(map.current)
-            
             // Add click handler
             el.addEventListener('click', () => {
               onStoreSelect(store)
@@ -177,7 +178,7 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
     }
     
     initializeAllMarkers()
-  }, [allStores, mapLoaded, onStoreSelect, onStoreHover])
+  }, [allStores, mapLoaded])
   
   // Update marker visibility when filtered stores change
   useEffect(() => {
@@ -186,37 +187,43 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
     // Get IDs of stores that should be visible
     const visibleStoreIds = new Set(stores.map(store => store._id))
     
-    // Show/hide markers based on current filter
+    // Show/hide markers based on current filter using Mapbox methods
     Object.entries(markers.current).forEach(([storeId, marker]) => {
       const shouldBeVisible = visibleStoreIds.has(storeId)
-      const markerElement = marker.getElement()
       
       if (shouldBeVisible) {
-        markerElement.style.display = 'block'
+        // Add marker to map if not already added
+        if (!marker._map) {
+          marker.addTo(map.current!)
+        }
       } else {
-        markerElement.style.display = 'none'
+        // Remove marker from map
+        marker.remove()
       }
     })
     
-    // Update map bounds to fit visible markers only
+    // Update map bounds to fit visible markers only (with delay to avoid race condition)
     if (stores.length > 0 && map.current) {
-      try {
-        const bounds = new mapboxgl.LngLatBounds()
-        stores.forEach(store => {
-          if (store.location && store.location.lng && store.location.lat) {
-            bounds.extend([store.location.lng, store.location.lat])
+      setTimeout(() => {
+        if (!map.current) return
+        try {
+          const bounds = new mapboxgl.LngLatBounds()
+          stores.forEach(store => {
+            if (store.location && store.location.lng && store.location.lat) {
+              bounds.extend([store.location.lng, store.location.lat])
+            }
+          })
+          
+          // Only fit bounds if we have valid bounds
+          if (!bounds.isEmpty()) {
+            map.current.fitBounds(bounds, { padding: 50 })
           }
-        })
-        
-        // Only fit bounds if we have valid bounds
-        if (!bounds.isEmpty()) {
-          map.current.fitBounds(bounds, { padding: 50 })
+        } catch (error) {
+          // Silently handle bounds fitting errors
         }
-      } catch (error) {
-        // Silently handle bounds fitting errors
-      }
+      }, 100)
     }
-  }, [stores])
+  }, [storeIds])
   
   // Update marker styles based on hover and selection states
   useEffect(() => {

@@ -2,29 +2,37 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { getStoresByCity, getAllCategories, getNeighborhoodsByCity } from '@/lib/data/local-store-service'
+import { getStoresByCity, getAllCategories, getNeighborhoodsByCity, getRegionsByCity } from '@/lib/data/local-store-service'
 import { Store, Category, Neighborhood } from '@/lib/types'
 import { StoreCard } from '@/components/store/StoreCard'
 import { StoreDetailPanel } from '@/components/store/StoreDetailPanel'
 import { Select, Input, Button, Badge } from '@/components/ui'
 import MapComponent from '@/components/map/MapComponent'
 
+type Region = {
+  _id: string
+  name: string
+  slug: { current: string }
+}
+
 export default function DiscoveryMapPage() {
   const searchParams = useSearchParams()
   
   // State
   const [stores, setStores] = useState<Store[]>([])
-  const [filteredStores, setFilteredStores] = useState<Store[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [neighborhoods, setNeighborhoods] = useState<Neighborhood[]>([])
+  const [regions, setRegions] = useState<Region[]>([])
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<string[]>([])
+  const [selectedRegions, setSelectedRegions] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [selectedStore, setSelectedStore] = useState<Store | null>(null)
   const [hoveredStore, setHoveredStore] = useState<Store | null>(null)
   const [isFilteringStores, setIsFilteringStores] = useState(false)
   const [detailPanelStore, setDetailPanelStore] = useState<Store | null>(null)
+  const [activeFilterTab, setActiveFilterTab] = useState<'categories' | 'regions'>('categories')
   // Load initial data
   useEffect(() => {
     async function loadData() {
@@ -33,20 +41,22 @@ export default function DiscoveryMapPage() {
         // Get city slug from the URL path
         const citySlug = 'new-york' // Since this is /cities/new-york/map
         
-        const [storesData, categoriesData, neighborhoodsData] = await Promise.all([
+        const [storesData, categoriesData, neighborhoodsData, regionsData] = await Promise.all([
           getStoresByCity(citySlug),
           getAllCategories(),
           getNeighborhoodsByCity(citySlug),
+          getRegionsByCity(citySlug),
         ])
         
         setStores(storesData)
-        setFilteredStores(storesData)
         setCategories(categoriesData)
         setNeighborhoods(neighborhoodsData)
+        setRegions(regionsData)
         
         // Check for URL parameters
         const categoryParam = searchParams.get('category')
         const neighborhoodParam = searchParams.get('neighborhood')
+        const regionParam = searchParams.get('region')
         const storesParam = searchParams.get('stores')
         
         if (categoryParam) {
@@ -55,12 +65,10 @@ export default function DiscoveryMapPage() {
         if (neighborhoodParam) {
           setSelectedNeighborhoods(neighborhoodParam.split(','))
         }
-        if (storesParam) {
-          // If specific store IDs are requested via URL, filter the city stores
-          const storeIds = storesParam.split(',')
-          const filtered = storesData.filter(store => storeIds.includes(store._id))
-          setFilteredStores(filtered)
+        if (regionParam) {
+          setSelectedRegions(regionParam.split(','))
         }
+        // Note: storesParam filtering will be handled by the memoized filteredStores
       } catch (error) {
         console.error('Error loading data:', error)
       } finally {
@@ -71,58 +79,64 @@ export default function DiscoveryMapPage() {
     loadData()
   }, [searchParams])
   
-  // Filter stores based on selections
-  useEffect(() => {
-    async function applyFilters() {
-      setIsFilteringStores(true)
-      
-      // Add a small delay to show loading state for better UX
-      await new Promise(resolve => setTimeout(resolve, 100))
-      
-      let filtered = stores // Start with city-filtered stores from initial load
-      
-      // Apply category and neighborhood filters if any are selected
-      if (selectedCategories.length > 0 || selectedNeighborhoods.length > 0) {
-        // Filter the existing city stores by category/neighborhood
-        filtered = filtered.filter(store => {
-          let matchesCategory = true
-          let matchesNeighborhood = true
-          
-          // Check category filter
-          if (selectedCategories.length > 0) {
-            matchesCategory = selectedCategories.some(catSlug => {
-              // Check primary category
-              if (store.primaryCategory?.slug?.current === catSlug) return true
-              // Check secondary categories
-              return store.secondaryCategories?.some(cat => cat.slug?.current === catSlug)
-            })
-          }
-          
-          // Check neighborhood filter
-          if (selectedNeighborhoods.length > 0) {
-            matchesNeighborhood = selectedNeighborhoods.includes(store.neighborhood?.slug?.current)
-          }
-          
-          return matchesCategory && matchesNeighborhood
-        })
-      }
-      
-      // Apply search query last
-      if (searchQuery) {
-        const query = searchQuery.toLowerCase()
-        filtered = filtered.filter(store =>
-          store.name.toLowerCase().includes(query) ||
-          store.cardDescription?.toLowerCase().includes(query) ||
-          store.neighborhood.name.toLowerCase().includes(query)
-        )
-      }
-      
-      setFilteredStores(filtered)
-      setIsFilteringStores(false)
+  // Memoized filtering logic - runs client-side only
+  const filteredStores = useMemo(() => {
+    if (!stores.length) return []
+    
+    let filtered = stores // Start with all loaded stores
+    
+    
+    // Apply category, neighborhood, and region filters if any are selected
+    if (selectedCategories.length > 0 || selectedNeighborhoods.length > 0 || selectedRegions.length > 0) {
+      filtered = filtered.filter(store => {
+        let matchesCategory = true
+        let matchesNeighborhood = true
+        let matchesRegion = true
+        
+        // Check category filter
+        if (selectedCategories.length > 0) {
+          matchesCategory = selectedCategories.some(catSlug => {
+            // Check primary category
+            if (store.primaryCategory?.slug?.current === catSlug) return true
+            // Check secondary categories
+            return store.secondaryCategories?.some(cat => cat.slug?.current === catSlug)
+          })
+        }
+        
+        // Check neighborhood filter
+        if (selectedNeighborhoods.length > 0) {
+          matchesNeighborhood = selectedNeighborhoods.includes(store.neighborhood?.slug?.current)
+        }
+        
+        // Check region filter
+        if (selectedRegions.length > 0) {
+          matchesRegion = selectedRegions.includes(store.neighborhood?.region?.slug?.current)
+        }
+        
+        return matchesCategory && matchesNeighborhood && matchesRegion
+      })
     }
     
-    applyFilters()
-  }, [stores, selectedCategories, selectedNeighborhoods, searchQuery])
+    // Apply search query last
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase()
+      filtered = filtered.filter(store =>
+        store.name.toLowerCase().includes(query) ||
+        store.cardDescription?.toLowerCase().includes(query) ||
+        store.neighborhood.name.toLowerCase().includes(query)
+      )
+    }
+    return filtered
+  }, [stores, selectedCategories, selectedNeighborhoods, selectedRegions, searchQuery])
+
+  // Simple effect to show filtering animation
+  useEffect(() => {
+    if (stores.length > 0) {
+      setIsFilteringStores(true)
+      const timer = setTimeout(() => setIsFilteringStores(false), 200)
+      return () => clearTimeout(timer)
+    }
+  }, [selectedCategories, selectedNeighborhoods, selectedRegions, searchQuery])
   
   // Update URL when filters change
   useEffect(() => {
@@ -134,10 +148,13 @@ export default function DiscoveryMapPage() {
     if (selectedNeighborhoods.length > 0) {
       params.set('neighborhood', selectedNeighborhoods.join(','))
     }
+    if (selectedRegions.length > 0) {
+      params.set('region', selectedRegions.join(','))
+    }
     
     const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname
     window.history.replaceState({}, '', newUrl)
-  }, [selectedCategories, selectedNeighborhoods])
+  }, [selectedCategories, selectedNeighborhoods, selectedRegions])
   
   const handleCategoryChange = (value: string) => {
     if (value && !selectedCategories.includes(value)) {
@@ -150,6 +167,12 @@ export default function DiscoveryMapPage() {
       setSelectedNeighborhoods([...selectedNeighborhoods, value])
     }
   }
+
+  const handleRegionChange = (value: string) => {
+    if (value && !selectedRegions.includes(value)) {
+      setSelectedRegions([...selectedRegions, value])
+    }
+  }
   
   const removeCategory = (category: string) => {
     setSelectedCategories(selectedCategories.filter(c => c !== category))
@@ -158,10 +181,15 @@ export default function DiscoveryMapPage() {
   const removeNeighborhood = (neighborhood: string) => {
     setSelectedNeighborhoods(selectedNeighborhoods.filter(n => n !== neighborhood))
   }
+
+  const removeRegion = (region: string) => {
+    setSelectedRegions(selectedRegions.filter(r => r !== region))
+  }
   
   const clearFilters = () => {
     setSelectedCategories([])
     setSelectedNeighborhoods([])
+    setSelectedRegions([])
     setSearchQuery('')
   }
 
@@ -180,7 +208,13 @@ export default function DiscoveryMapPage() {
     setSelectedStore(null) // Also clear map selection
   }
   
-  const hasActiveFilters = selectedCategories.length > 0 || selectedNeighborhoods.length > 0 || searchQuery
+  const hasActiveFilters = selectedCategories.length > 0 || selectedNeighborhoods.length > 0 || selectedRegions.length > 0 || searchQuery
+
+  // Get filtered neighborhoods based on selected regions (memoized for performance)
+  const filteredNeighborhoods = useMemo(() => {
+    if (selectedRegions.length === 0) return neighborhoods
+    return neighborhoods.filter(n => selectedRegions.includes(n.region?.slug?.current))
+  }, [neighborhoods, selectedRegions])
   
   return (
     <div className="flex h-[calc(100vh-4rem)] bg-gray-50">
@@ -225,42 +259,100 @@ export default function DiscoveryMapPage() {
             )}
           </div>
           
-          {/* Filters */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="relative">
-              <Select
-                options={categories.map(cat => ({
-                  value: cat.slug.current,
-                  label: cat.name
-                }))}
-                placeholder="Category"
-                value=""
-                onChange={(e) => handleCategoryChange(e.target.value)}
-                className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
-              />
-              {selectedCategories.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {selectedCategories.length}
-                </span>
-              )}
+          {/* Filter Tabs */}
+          <div className="mb-4">
+            <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
+              <button
+                onClick={() => setActiveFilterTab('categories')}
+                className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                  activeFilterTab === 'categories'
+                    ? 'bg-white text-earth-sage-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Categories
+                {selectedCategories.length > 0 && (
+                  <span className="ml-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center inline-flex">
+                    {selectedCategories.length}
+                  </span>
+                )}
+              </button>
+              <button
+                onClick={() => setActiveFilterTab('regions')}
+                className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all duration-200 ${
+                  activeFilterTab === 'regions'
+                    ? 'bg-white text-earth-sage-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Regions
+                {(selectedRegions.length > 0 || selectedNeighborhoods.length > 0) && (
+                  <span className="ml-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center inline-flex">
+                    {selectedRegions.length + selectedNeighborhoods.length}
+                  </span>
+                )}
+              </button>
             </div>
-            <div className="relative">
-              <Select
-                options={neighborhoods.map(n => ({
-                  value: n.slug.current,
-                  label: n.name
-                }))}
-                placeholder="Neighborhood"
-                value=""
-                onChange={(e) => handleNeighborhoodChange(e.target.value)}
-                className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
-              />
-              {selectedNeighborhoods.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {selectedNeighborhoods.length}
-                </span>
-              )}
-            </div>
+
+            {/* Categories Tab Content */}
+            {activeFilterTab === 'categories' && (
+              <div className="animate-in fade-in slide-in-from-top-2 duration-200">
+                <Select
+                  options={categories.map(cat => ({
+                    value: cat.slug.current,
+                    label: cat.name
+                  }))}
+                  placeholder="Select a category..."
+                  value=""
+                  onChange={(e) => handleCategoryChange(e.target.value)}
+                  className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
+                />
+              </div>
+            )}
+
+            {/* Regions Tab Content */}
+            {activeFilterTab === 'regions' && (
+              <div className="animate-in fade-in slide-in-from-top-2 duration-200 space-y-3">
+                <div className="relative">
+                  <Select
+                    options={regions.map(r => ({
+                      value: r.slug.current,
+                      label: r.name
+                    }))}
+                    placeholder="Select a region..."
+                    value=""
+                    onChange={(e) => handleRegionChange(e.target.value)}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
+                  />
+                  {selectedRegions.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {selectedRegions.length}
+                    </span>
+                  )}
+                </div>
+                <div className="relative">
+                  <Select
+                    options={filteredNeighborhoods.map(n => ({
+                      value: n.slug.current,
+                      label: n.name
+                    }))}
+                    placeholder={selectedRegions.length > 0 ? "Select a neighborhood..." : "Select a region first..."}
+                    value=""
+                    onChange={(e) => handleNeighborhoodChange(e.target.value)}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
+                    disabled={selectedRegions.length === 0}
+                  />
+                  {selectedNeighborhoods.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {selectedNeighborhoods.length}
+                    </span>
+                  )}
+                </div>
+                {selectedRegions.length === 0 && (
+                  <p className="text-xs text-gray-500 mt-1">Select a region to filter neighborhoods</p>
+                )}
+              </div>
+            )}
           </div>
           
           {/* Active Filters */}
@@ -270,39 +362,58 @@ export default function DiscoveryMapPage() {
                 {selectedCategories.map((cat, index) => {
                   const category = categories.find(c => c.slug.current === cat)
                   return category ? (
-                    <Badge 
-                      key={cat} 
-                      variant="primary" 
-                      className="animate-in fade-in slide-in-from-left-2 duration-300 flex items-center gap-1"
-                      style={{ animationDelay: `${index * 50}ms` }}
-                    >
-                      {category.name}
-                      <button
-                        onClick={() => removeCategory(cat)}
-                        className="ml-1 hover:text-gray-700 transition-colors duration-150"
+                    <div key={cat} className="animate-in fade-in slide-in-from-left-2 duration-300" style={{ animationDelay: `${index * 50}ms` }}>
+                      <Badge 
+                        variant="primary" 
+                        className="flex items-center gap-1"
                       >
-                        ×
-                      </button>
-                    </Badge>
+                        📂 {category.name}
+                        <button
+                          onClick={() => removeCategory(cat)}
+                          className="ml-1 hover:text-gray-700 transition-colors duration-150"
+                        >
+                          ×
+                        </button>
+                      </Badge>
+                    </div>
+                  ) : null
+                })}
+                {selectedRegions.map((r, index) => {
+                  const region = regions.find(rg => rg.slug.current === r)
+                  return region ? (
+                    <div key={r} className="animate-in fade-in slide-in-from-left-2 duration-300" style={{ animationDelay: `${(selectedCategories.length + index) * 50}ms` }}>
+                      <Badge 
+                        variant="secondary" 
+                        className="flex items-center gap-1"
+                      >
+                        🏙️ {region.name}
+                        <button
+                          onClick={() => removeRegion(r)}
+                          className="ml-1 hover:text-gray-700 transition-colors duration-150"
+                        >
+                          ×
+                        </button>
+                      </Badge>
+                    </div>
                   ) : null
                 })}
                 {selectedNeighborhoods.map((n, index) => {
                   const neighborhood = neighborhoods.find(nh => nh.slug.current === n)
                   return neighborhood ? (
-                    <Badge 
-                      key={n} 
-                      variant="secondary" 
-                      className="animate-in fade-in slide-in-from-left-2 duration-300 flex items-center gap-1"
-                      style={{ animationDelay: `${(selectedCategories.length + index) * 50}ms` }}
-                    >
-                      {neighborhood.name}
-                      <button
-                        onClick={() => removeNeighborhood(n)}
-                        className="ml-1 hover:text-gray-700 transition-colors duration-150"
+                    <div key={n} className="animate-in fade-in slide-in-from-left-2 duration-300" style={{ animationDelay: `${(selectedCategories.length + selectedRegions.length + index) * 50}ms` }}>
+                      <Badge 
+                        variant="default" 
+                        className="flex items-center gap-1"
                       >
-                        ×
-                      </button>
-                    </Badge>
+                        📍 {neighborhood.name}
+                        <button
+                          onClick={() => removeNeighborhood(n)}
+                          className="ml-1 hover:text-gray-700 transition-colors duration-150"
+                        >
+                          ×
+                        </button>
+                      </Badge>
+                    </div>
                   ) : null
                 })}
               </div>

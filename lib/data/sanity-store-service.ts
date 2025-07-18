@@ -288,6 +288,24 @@ export async function getNeighborhoodsByCity(citySlug: string): Promise<Neighbor
   }
 }
 
+// Get regions by city slug
+export async function getRegionsByCity(citySlug: string): Promise<{ _id: string, name: string, slug: { current: string } }[]> {
+  try {
+    const query = groq`
+      *[_type == "region" && city->slug.current == $citySlug] {
+        _id,
+        name,
+        slug
+      }
+    `
+    const regions = await client.fetch(query, { citySlug })
+    return regions?.sort((a: any, b: any) => a.name.localeCompare(b.name)) || []
+  } catch (error) {
+    console.error('Error fetching regions by city from Sanity:', error)
+    return []
+  }
+}
+
 // Get NYC city data
 export async function getCityData(): Promise<City> {
   try {

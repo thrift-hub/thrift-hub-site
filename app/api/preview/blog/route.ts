@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // Get the blog post data
-    const post = await getBlogPostBySlug(slug || documentId)
+    const post = await getBlogPostBySlug((slug || documentId) as string)
     
     if (!post) {
       return NextResponse.json({ error: 'Blog post not found' }, { status: 404 })
