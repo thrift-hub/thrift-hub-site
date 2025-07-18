@@ -25,9 +25,12 @@ const getStoreImage = (storeId: string) => {
 interface StoreCardProps {
   store: Store
   variant?: 'grid' | 'list'
+  isSelected?: boolean
+  isHovered?: boolean
+  onClick?: () => void
 }
 
-export const StoreCard: FC<StoreCardProps> = ({ store, variant = 'grid' }) => {
+export const StoreCard: FC<StoreCardProps> = ({ store, variant = 'grid', isSelected = false, isHovered = false, onClick }) => {
   const imageUrl = store.featuredImage
     ? urlFor(store.featuredImage).width(400).height(300).url()
     : getStoreImage(store._id)
@@ -37,48 +40,82 @@ export const StoreCard: FC<StoreCardProps> = ({ store, variant = 'grid' }) => {
     : null
   
   if (variant === 'list') {
-    return (
-      <Card hover className="p-4">
-        <Link href={`/stores/${store.slug.current}`} className="flex gap-4">
-          <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
-            <Image
-              src={imageUrl}
-              alt={store.name}
-              fill
-              className="object-cover"
-            />
+    const cardClasses = `p-4 transition-all duration-200 ease-in-out ${
+      isSelected 
+        ? 'ring-2 ring-earth-sage-500 bg-earth-sage-50' 
+        : isHovered
+        ? 'bg-gray-50 shadow-md'
+        : ''
+    }`
+    
+    const content = (
+      <>
+        <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+          <Image
+            src={imageUrl}
+            alt={store.name}
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className={`font-semibold text-lg mb-1 truncate transition-colors duration-200 ${
+            isSelected ? 'text-earth-sage-700' : 'text-gray-900'
+          }`}>
+            {store.name}
+          </h3>
+          <p className="text-sm text-gray-600 mb-2">
+            {store.neighborhood?.name}{store.neighborhood?.region?.name && ` • ${store.neighborhood.region.name}`}
+          </p>
+          <p className="text-sm text-gray-700 line-clamp-2">
+            {store.cardDescription}
+          </p>
+          <div className="flex items-center gap-3 mt-2">
+            {store.primaryCategory && (
+              <Badge 
+                variant={isSelected ? "default" : "primary"} 
+                size="sm"
+                className={isSelected ? 'bg-earth-sage-600 text-white' : ''}
+              >
+                {store.primaryCategory.name}
+              </Badge>
+            )}
+            {priceIndicator && (
+              <span className="text-sm text-gray-600">{priceIndicator}</span>
+            )}
+            {store.metrics?.rating && (
+              <div className="flex items-center gap-1">
+                <span className="text-sm font-medium">{store.metrics.rating}</span>
+                <span className="text-yellow-500">★</span>
+                <span className="text-sm text-gray-500">
+                  ({store.metrics.userRatingsTotal})
+                </span>
+              </div>
+            )}
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-lg text-gray-900 mb-1 truncate">
-              {store.name}
-            </h3>
-            <p className="text-sm text-gray-600 mb-2">
-              {store.neighborhood?.name}{store.neighborhood?.region?.name && ` • ${store.neighborhood.region.name}`}
-            </p>
-            <p className="text-sm text-gray-700 line-clamp-2">
-              {store.cardDescription}
-            </p>
-            <div className="flex items-center gap-3 mt-2">
-              {store.primaryCategory && (
-                <Badge variant="primary" size="sm">
-                  {store.primaryCategory.name}
-                </Badge>
-              )}
-              {priceIndicator && (
-                <span className="text-sm text-gray-600">{priceIndicator}</span>
-              )}
-              {store.metrics?.rating && (
-                <div className="flex items-center gap-1">
-                  <span className="text-sm font-medium">{store.metrics.rating}</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-sm text-gray-500">
-                    ({store.metrics.userRatingsTotal})
-                  </span>
-                </div>
-              )}
+          {isSelected && (
+            <div className="mt-2 pt-2 border-t border-earth-sage-200">
+              <span className="text-xs text-earth-sage-600 font-medium flex items-center gap-1">
+                <span className="w-2 h-2 bg-earth-sage-500 rounded-full"></span>
+                Selected on Map
+              </span>
             </div>
+          )}
+        </div>
+      </>
+    )
+    
+    return (
+      <Card hover className={cardClasses}>
+        {onClick ? (
+          <div onClick={onClick} className="flex gap-4 cursor-pointer">
+            {content}
           </div>
-        </Link>
+        ) : (
+          <Link href={`/stores/${store.slug.current}`} className="flex gap-4">
+            {content}
+          </Link>
+        )}
       </Card>
     )
   }

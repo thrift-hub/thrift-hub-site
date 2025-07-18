@@ -9,12 +9,15 @@ import { Store } from '@/lib/types'
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''
 
 interface MapComponentProps {
-  stores: Store[]
+  stores: Store[] // Currently filtered stores
+  allStores?: Store[] // All available stores (for marker initialization)
   selectedStore: Store | null
+  hoveredStore?: Store | null
   onStoreSelect: (store: Store) => void
+  onStoreHover?: (store: Store | null) => void
 }
 
-export default function MapComponent({ stores, selectedStore, onStoreSelect }: MapComponentProps) {
+export default function MapComponent({ stores, allStores, selectedStore, hoveredStore, onStoreSelect, onStoreHover }: MapComponentProps) {
   const map = useRef<mapboxgl.Map | null>(null)
   const markers = useRef<{ [key: string]: mapboxgl.Marker }>({})
   const [mapError, setMapError] = useState<string | null>(null)
@@ -96,20 +99,19 @@ export default function MapComponent({ stores, selectedStore, onStoreSelect }: M
     }
   }, [mapContainer, mapLoaded])
   
-  // Update markers when stores change
+  // Initialize all markers once when all stores are available
   useEffect(() => {
-    if (!map.current) return
+    if (!map.current || !mapLoaded || !allStores || allStores.length === 0) return
     
-    // Wait for map to be fully loaded
-    const addMarkers = () => {
+    const initializeAllMarkers = () => {
       if (!map.current) return
       
-      // Remove existing markers
+      // Clear existing markers
       Object.values(markers.current).forEach(marker => marker.remove())
       markers.current = {}
       
-      // Add new markers
-      stores.forEach(store => {
+      // Create markers for ALL stores (but don't worry about visibility yet)
+      allStores.forEach(store => {
         if (!store.location || !store.location.lng || !store.location.lat) {
           return
         }
@@ -122,6 +124,7 @@ export default function MapComponent({ stores, selectedStore, onStoreSelect }: M
         el.style.backgroundImage = 'url(/images/map-pin.svg)'
         el.style.backgroundSize = 'contain'
         el.style.cursor = 'pointer'
+        el.style.transition = 'width 0.2s ease-out, height 0.2s ease-out'
         
         // If no custom pin image, use a colored div
         if (!el.style.backgroundImage) {
@@ -146,7 +149,7 @@ export default function MapComponent({ stores, selectedStore, onStoreSelect }: M
                 `)
             )
           
-          // Only add to map if map is still available
+          // Add to map
           if (map.current) {
             marker.addTo(map.current)
             
@@ -155,64 +158,130 @@ export default function MapComponent({ stores, selectedStore, onStoreSelect }: M
               onStoreSelect(store)
             })
             
+            // Add hover handlers for map markers
+            el.addEventListener('mouseenter', () => {
+              onStoreHover?.(store)
+            })
+            
+            el.addEventListener('mouseleave', () => {
+              onStoreHover?.(null)
+            })
+            
+            // Store marker with reference to store ID
             markers.current[store._id] = marker
           }
         } catch (error) {
           // Silently skip markers that fail to add
         }
       })
-      
-      // Fit bounds to show all markers
-      if (stores.length > 0 && map.current) {
-        try {
-          const bounds = new mapboxgl.LngLatBounds()
-          stores.forEach(store => {
-            if (store.location && store.location.lng && store.location.lat) {
-              bounds.extend([store.location.lng, store.location.lat])
-            }
-          })
-          map.current.fitBounds(bounds, { padding: 50 })
-        } catch (error) {
-          // Silently handle bounds fitting errors
-        }
-      }
     }
     
-    // If map is loaded, add markers immediately
-    if (map.current.loaded()) {
-      addMarkers()
-    } else {
-      // Otherwise wait for map to load
-      map.current.on('load', addMarkers)
-    }
-  }, [stores, onStoreSelect])
+    initializeAllMarkers()
+  }, [allStores, mapLoaded, onStoreSelect, onStoreHover])
   
-  // Handle selected store
+  // Update marker visibility when filtered stores change
   useEffect(() => {
-    if (!selectedStore || !map.current) return
+    if (!map.current || Object.keys(markers.current).length === 0) return
     
-    // Check if selected store has valid location
-    if (!selectedStore.location || !selectedStore.location.lng || !selectedStore.location.lat) {
-      return
-    }
+    // Get IDs of stores that should be visible
+    const visibleStoreIds = new Set(stores.map(store => store._id))
     
-    try {
-      // Fly to selected store
-      map.current.flyTo({
-        center: [selectedStore.location.lng, selectedStore.location.lat],
-        zoom: 15,
-        duration: 1000,
-      })
+    // Show/hide markers based on current filter
+    Object.entries(markers.current).forEach(([storeId, marker]) => {
+      const shouldBeVisible = visibleStoreIds.has(storeId)
+      const markerElement = marker.getElement()
       
-      // Open popup for selected marker
-      const marker = markers.current[selectedStore._id]
-      if (marker) {
-        marker.togglePopup()
+      if (shouldBeVisible) {
+        markerElement.style.display = 'block'
+      } else {
+        markerElement.style.display = 'none'
       }
-    } catch (error) {
-      // Silently handle selected store errors
+    })
+    
+    // Update map bounds to fit visible markers only
+    if (stores.length > 0 && map.current) {
+      try {
+        const bounds = new mapboxgl.LngLatBounds()
+        stores.forEach(store => {
+          if (store.location && store.location.lng && store.location.lat) {
+            bounds.extend([store.location.lng, store.location.lat])
+          }
+        })
+        
+        // Only fit bounds if we have valid bounds
+        if (!bounds.isEmpty()) {
+          map.current.fitBounds(bounds, { padding: 50 })
+        }
+      } catch (error) {
+        // Silently handle bounds fitting errors
+      }
     }
-  }, [selectedStore])
+  }, [stores])
+  
+  // Update marker styles based on hover and selection states
+  useEffect(() => {
+    Object.entries(markers.current).forEach(([storeId, marker]) => {
+      const markerElement = marker.getElement()
+      const isHovered = hoveredStore?._id === storeId
+      
+      // Simple hover scaling - make marker larger when hovered
+      if (isHovered) {
+        markerElement.style.width = '36px'
+        markerElement.style.height = '36px'
+        markerElement.style.zIndex = '50'
+      } else {
+        markerElement.style.width = '30px'
+        markerElement.style.height = '30px'
+        markerElement.style.zIndex = '1'
+      }
+    })
+  }, [hoveredStore])
+  
+  // Handle selected store - zoom in when clicked, fit bounds when deselected
+  useEffect(() => {
+    if (!map.current) return
+    
+    if (selectedStore) {
+      // Check if selected store has valid location
+      if (!selectedStore.location || !selectedStore.location.lng || !selectedStore.location.lat) {
+        return
+      }
+      
+      try {
+        // Zoom in to selected store
+        map.current.flyTo({
+          center: [selectedStore.location.lng, selectedStore.location.lat],
+          zoom: 16,
+          duration: 800,
+        })
+        
+        // Open popup for selected marker
+        const marker = markers.current[selectedStore._id]
+        if (marker) {
+          marker.togglePopup()
+        }
+      } catch (error) {
+        // Silently handle selected store errors
+      }
+    } else if (stores.length > 0) {
+      // No store selected, revert to showing all filtered stores
+      try {
+        const bounds = new mapboxgl.LngLatBounds()
+        stores.forEach(store => {
+          if (store.location && store.location.lng && store.location.lat) {
+            bounds.extend([store.location.lng, store.location.lat])
+          }
+        })
+        
+        // Only fit bounds if we have valid bounds
+        if (!bounds.isEmpty()) {
+          map.current.fitBounds(bounds, { padding: 50, duration: 800 })
+        }
+      } catch (error) {
+        // Silently handle bounds fitting errors
+      }
+    }
+  }, [selectedStore, stores])
   
   if (mapError) {
     return (

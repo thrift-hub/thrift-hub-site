@@ -116,7 +116,6 @@ const blogPostQuery = groq`
 export async function getAllStores(): Promise<Store[]> {
   try {
     const stores = await client.fetch(storeQuery)
-    console.log(`getAllStores found ${stores?.length || 0} total stores`)
     return stores || []
   } catch (error) {
     console.error('Error fetching stores from Sanity:', error)
@@ -127,41 +126,6 @@ export async function getAllStores(): Promise<Store[]> {
 // Get stores by city slug
 export async function getStoresByCity(citySlug: string): Promise<Store[]> {
   try {
-    // First, let's debug what we're getting
-    console.log('Getting stores for city:', citySlug)
-    
-    // First, let's check how many stores we have without any filter
-    const allStoresQuery = groq`
-      *[_type == "store"] {
-        _id,
-        name,
-        neighborhood->{
-          name,
-          region->{
-            name,
-            city->{
-              name,
-              slug
-            }
-          }
-        }
-      }
-    `
-    const allStores = await client.fetch(allStoresQuery)
-    console.log(`Total stores in DB: ${allStores?.length || 0}`)
-    
-    // Check how many have complete neighborhood->region->city chain
-    const withCompleteChain = allStores?.filter((store: any) => 
-      store.neighborhood?.region?.city?.slug?.current
-    ) || []
-    console.log(`Stores with complete neighborhood->region->city: ${withCompleteChain.length}`)
-    
-    // Check unique cities
-    const uniqueCities = [...new Set(
-      withCompleteChain.map((store: any) => store.neighborhood?.region?.city?.slug?.current)
-    )]
-    console.log('Unique cities in data:', uniqueCities)
-    
     const query = groq`
       *[_type == "store" && neighborhood->region->city->slug.current == $citySlug] {
         _id,
@@ -208,18 +172,6 @@ export async function getStoresByCity(citySlug: string): Promise<Store[]> {
       }
     `
     const stores = await client.fetch(query, { citySlug })
-    console.log(`Found ${stores?.length || 0} stores for city ${citySlug}`)
-    
-    // Debug: Let's also check a sample store's neighborhood data
-    if (stores && stores.length > 0) {
-      console.log('Sample store neighborhood data:', {
-        store: stores[0].name,
-        neighborhood: stores[0].neighborhood?.name,
-        region: stores[0].neighborhood?.region?.name,
-        city: stores[0].neighborhood?.region?.city?.name
-      })
-    }
-    
     return stores || []
   } catch (error) {
     console.error('Error fetching stores by city from Sanity:', error)

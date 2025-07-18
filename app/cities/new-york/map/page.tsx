@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { getStoresByCity, getAllCategories, getNeighborhoodsByCity, filterStores } from '@/lib/data/local-store-service'
+import { getStoresByCity, getAllCategories, getNeighborhoodsByCity } from '@/lib/data/local-store-service'
 import { Store, Category, Neighborhood } from '@/lib/types'
 import { StoreCard } from '@/components/store/StoreCard'
+import { StoreDetailPanel } from '@/components/store/StoreDetailPanel'
 import { Select, Input, Button, Badge } from '@/components/ui'
 import MapComponent from '@/components/map/MapComponent'
 
@@ -21,6 +22,9 @@ export default function DiscoveryMapPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [selectedStore, setSelectedStore] = useState<Store | null>(null)
+  const [hoveredStore, setHoveredStore] = useState<Store | null>(null)
+  const [isFilteringStores, setIsFilteringStores] = useState(false)
+  const [detailPanelStore, setDetailPanelStore] = useState<Store | null>(null)
   // Load initial data
   useEffect(() => {
     async function loadData() {
@@ -52,11 +56,9 @@ export default function DiscoveryMapPage() {
           setSelectedNeighborhoods(neighborhoodParam.split(','))
         }
         if (storesParam) {
+          // If specific store IDs are requested via URL, filter the city stores
           const storeIds = storesParam.split(',')
-          const filtered = await filterStores({ 
-            storeIds,
-            citySlug: 'new-york' // Filter to only NYC stores
-          })
+          const filtered = storesData.filter(store => storeIds.includes(store._id))
           setFilteredStores(filtered)
         }
       } catch (error) {
@@ -72,9 +74,40 @@ export default function DiscoveryMapPage() {
   // Filter stores based on selections
   useEffect(() => {
     async function applyFilters() {
-      let filtered = stores
+      setIsFilteringStores(true)
       
-      // Apply search query
+      // Add a small delay to show loading state for better UX
+      await new Promise(resolve => setTimeout(resolve, 100))
+      
+      let filtered = stores // Start with city-filtered stores from initial load
+      
+      // Apply category and neighborhood filters if any are selected
+      if (selectedCategories.length > 0 || selectedNeighborhoods.length > 0) {
+        // Filter the existing city stores by category/neighborhood
+        filtered = filtered.filter(store => {
+          let matchesCategory = true
+          let matchesNeighborhood = true
+          
+          // Check category filter
+          if (selectedCategories.length > 0) {
+            matchesCategory = selectedCategories.some(catSlug => {
+              // Check primary category
+              if (store.primaryCategory?.slug?.current === catSlug) return true
+              // Check secondary categories
+              return store.secondaryCategories?.some(cat => cat.slug?.current === catSlug)
+            })
+          }
+          
+          // Check neighborhood filter
+          if (selectedNeighborhoods.length > 0) {
+            matchesNeighborhood = selectedNeighborhoods.includes(store.neighborhood?.slug?.current)
+          }
+          
+          return matchesCategory && matchesNeighborhood
+        })
+      }
+      
+      // Apply search query last
       if (searchQuery) {
         const query = searchQuery.toLowerCase()
         filtered = filtered.filter(store =>
@@ -84,26 +117,8 @@ export default function DiscoveryMapPage() {
         )
       }
       
-      // Apply category and neighborhood filters
-      if (selectedCategories.length > 0 || selectedNeighborhoods.length > 0) {
-        filtered = await filterStores({
-          categories: selectedCategories,
-          neighborhoods: selectedNeighborhoods,
-          citySlug: 'new-york', // Filter to only NYC stores
-        })
-        
-        // Re-apply search query if needed
-        if (searchQuery) {
-          const query = searchQuery.toLowerCase()
-          filtered = filtered.filter(store =>
-            store.name.toLowerCase().includes(query) ||
-            store.cardDescription?.toLowerCase().includes(query) ||
-            store.neighborhood.name.toLowerCase().includes(query)
-          )
-        }
-      }
-      
       setFilteredStores(filtered)
+      setIsFilteringStores(false)
     }
     
     applyFilters()
@@ -149,123 +164,267 @@ export default function DiscoveryMapPage() {
     setSelectedNeighborhoods([])
     setSearchQuery('')
   }
+
+  const handleStoreCardClick = (store: Store) => {
+    setSelectedStore(store) // This will zoom the map
+    setDetailPanelStore(store) // This will show the detail panel
+  }
+
+  const handleMapStoreSelect = (store: Store) => {
+    setSelectedStore(store) // This will zoom the map
+    setDetailPanelStore(store) // This will show the detail panel
+  }
+
+  const handleCloseDetailPanel = () => {
+    setDetailPanelStore(null)
+    setSelectedStore(null) // Also clear map selection
+  }
   
   const hasActiveFilters = selectedCategories.length > 0 || selectedNeighborhoods.length > 0 || searchQuery
   
   return (
-    <div className="flex h-[calc(100vh-4rem)]">
+    <div className="flex h-[calc(100vh-4rem)] bg-gray-50">
       {/* Left Panel - Store List */}
-      <div className="w-full md:w-1/3 lg:w-2/5 overflow-y-auto bg-white shadow-lg">
-        <div className="sticky top-0 bg-white z-10 p-4 border-b">
-          <h1 className="text-2xl font-display font-bold text-gray-900 mb-4">
-            Discover NYC Stores
-          </h1>
+      <div className="w-full md:w-1/3 lg:w-2/5 overflow-y-auto bg-white shadow-lg transition-all duration-300">
+        <div className="sticky top-0 bg-white/95 backdrop-blur-sm z-10 p-4 border-b border-gray-200">
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-2xl font-display font-bold text-gray-900">
+              Discover NYC Stores
+            </h1>
+            {isFilteringStores && (
+              <div className="flex items-center gap-2 text-earth-sage-600">
+                <div className="w-4 h-4 border-2 border-earth-sage-600 border-t-transparent rounded-full animate-spin"></div>
+                <span className="text-sm">Filtering...</span>
+              </div>
+            )}
+          </div>
           
           {/* Search */}
-          <Input
-            type="search"
-            placeholder="Search stores..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="mb-4"
-          />
+          <div className="relative mb-4">
+            <Input
+              type="search"
+              placeholder="Search stores, neighborhoods..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500 focus:border-earth-sage-500"
+            />
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
           
           {/* Filters */}
-          <div className="grid grid-cols-2 gap-2 mb-4">
-            <Select
-              options={categories.map(cat => ({
-                value: cat.slug.current,
-                label: cat.name
-              }))}
-              placeholder="Category"
-              value=""
-              onChange={(e) => handleCategoryChange(e.target.value)}
-            />
-            <Select
-              options={neighborhoods.map(n => ({
-                value: n.slug.current,
-                label: n.name
-              }))}
-              placeholder="Neighborhood"
-              value=""
-              onChange={(e) => handleNeighborhoodChange(e.target.value)}
-            />
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="relative">
+              <Select
+                options={categories.map(cat => ({
+                  value: cat.slug.current,
+                  label: cat.name
+                }))}
+                placeholder="Category"
+                value=""
+                onChange={(e) => handleCategoryChange(e.target.value)}
+                className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
+              />
+              {selectedCategories.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {selectedCategories.length}
+                </span>
+              )}
+            </div>
+            <div className="relative">
+              <Select
+                options={neighborhoods.map(n => ({
+                  value: n.slug.current,
+                  label: n.name
+                }))}
+                placeholder="Neighborhood"
+                value=""
+                onChange={(e) => handleNeighborhoodChange(e.target.value)}
+                className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
+              />
+              {selectedNeighborhoods.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-earth-sage-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {selectedNeighborhoods.length}
+                </span>
+              )}
+            </div>
           </div>
           
           {/* Active Filters */}
           {hasActiveFilters && (
-            <div className="flex flex-wrap gap-2 mb-2">
-              {selectedCategories.map(cat => {
-                const category = categories.find(c => c.slug.current === cat)
-                return category ? (
-                  <Badge key={cat} variant="primary" className="flex items-center gap-1">
-                    {category.name}
-                    <button
-                      onClick={() => removeCategory(cat)}
-                      className="ml-1 hover:text-gray-700"
+            <div className="animate-in slide-in-from-top-2 duration-300 mb-4">
+              <div className="flex flex-wrap gap-2 mb-3">
+                {selectedCategories.map((cat, index) => {
+                  const category = categories.find(c => c.slug.current === cat)
+                  return category ? (
+                    <Badge 
+                      key={cat} 
+                      variant="primary" 
+                      className="animate-in fade-in slide-in-from-left-2 duration-300 flex items-center gap-1"
+                      style={{ animationDelay: `${index * 50}ms` }}
                     >
-                      ×
-                    </button>
-                  </Badge>
-                ) : null
-              })}
-              {selectedNeighborhoods.map(n => {
-                const neighborhood = neighborhoods.find(nh => nh.slug.current === n)
-                return neighborhood ? (
-                  <Badge key={n} variant="secondary" className="flex items-center gap-1">
-                    {neighborhood.name}
-                    <button
-                      onClick={() => removeNeighborhood(n)}
-                      className="ml-1 hover:text-gray-700"
+                      {category.name}
+                      <button
+                        onClick={() => removeCategory(cat)}
+                        className="ml-1 hover:text-gray-700 transition-colors duration-150"
+                      >
+                        ×
+                      </button>
+                    </Badge>
+                  ) : null
+                })}
+                {selectedNeighborhoods.map((n, index) => {
+                  const neighborhood = neighborhoods.find(nh => nh.slug.current === n)
+                  return neighborhood ? (
+                    <Badge 
+                      key={n} 
+                      variant="secondary" 
+                      className="animate-in fade-in slide-in-from-left-2 duration-300 flex items-center gap-1"
+                      style={{ animationDelay: `${(selectedCategories.length + index) * 50}ms` }}
                     >
-                      ×
-                    </button>
-                  </Badge>
-                ) : null
-              })}
+                      {neighborhood.name}
+                      <button
+                        onClick={() => removeNeighborhood(n)}
+                        className="ml-1 hover:text-gray-700 transition-colors duration-150"
+                      >
+                        ×
+                      </button>
+                    </Badge>
+                  ) : null
+                })}
+              </div>
               <button
                 onClick={clearFilters}
-                className="text-sm text-gray-600 hover:text-gray-800"
+                className="text-sm text-gray-600 hover:text-earth-sage-600 transition-colors duration-200 flex items-center gap-1"
               >
-                Clear all
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Clear all filters
               </button>
             </div>
           )}
           
-          <p className="text-sm text-gray-600">
-            {filteredStores.length} stores found
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-gray-600 transition-all duration-300">
+              <span className="font-medium">{filteredStores.length}</span> 
+              {filteredStores.length === 1 ? ' store' : ' stores'} found
+            </p>
+            {hasActiveFilters && (
+              <div className="flex items-center gap-1 text-xs text-earth-sage-600">
+                <div className="w-2 h-2 bg-earth-sage-500 rounded-full animate-pulse"></div>
+                Filtered
+              </div>
+            )}
+          </div>
         </div>
         
         {/* Store List */}
-        <div className="p-4 space-y-4">
+        <div className="p-4">
           {isLoading ? (
             <div className="space-y-4">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="h-32 bg-gray-200 rounded-lg animate-pulse" />
+              {[1, 2, 3, 4, 5].map(i => (
+                <div key={i} className="animate-pulse">
+                  <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                    <div className="w-24 h-24 bg-gray-200 rounded-lg flex-shrink-0"></div>
+                    <div className="flex-1 space-y-2">
+                      <div className="h-5 bg-gray-200 rounded w-3/4"></div>
+                      <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                      <div className="h-4 bg-gray-200 rounded w-full"></div>
+                      <div className="flex gap-2">
+                        <div className="h-6 bg-gray-200 rounded-full w-16"></div>
+                        <div className="h-6 bg-gray-200 rounded-full w-12"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
-          ) : filteredStores.length > 0 ? (
-            filteredStores.map((store) => (
-              <div
-                key={store._id}
-                onClick={() => setSelectedStore(store)}
-                className={`cursor-pointer transition-all ${
-                  selectedStore?._id === store._id ? 'ring-2 ring-earth-sage-500' : ''
-                }`}
-              >
-                <StoreCard store={store} variant="list" />
+          ) : isFilteringStores ? (
+            <div className="space-y-4">
+              {filteredStores.slice(0, 3).map((store, index) => (
+                <div 
+                  key={store._id}
+                  className="opacity-50 pointer-events-none transition-opacity duration-200"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <StoreCard 
+                    store={store} 
+                    variant="list"
+                    isSelected={false}
+                    isHovered={false}
+                  />
+                </div>
+              ))}
+              <div className="flex items-center justify-center py-8 text-earth-sage-600">
+                <div className="w-6 h-6 border-2 border-earth-sage-600 border-t-transparent rounded-full animate-spin mr-3"></div>
+                <span>Updating results...</span>
               </div>
-            ))
+            </div>
+          ) : filteredStores.length > 0 ? (
+            <div className="space-y-4">
+              {filteredStores.map((store, index) => (
+                <div
+                  key={store._id}
+                  onMouseEnter={() => setHoveredStore(store)}
+                  onMouseLeave={() => setHoveredStore(null)}
+                  className={`transition-all duration-200 ease-in-out transform animate-in fade-in slide-in-from-bottom-4 ${
+                    selectedStore?._id === store._id 
+                      ? 'ring-2 ring-earth-sage-500 shadow-lg scale-[1.02]' 
+                      : hoveredStore?._id === store._id
+                      ? 'shadow-md scale-[1.01] bg-gray-50'
+                      : 'hover:shadow-md hover:scale-[1.01] hover:bg-gray-50'
+                  }`}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <StoreCard 
+                    store={store} 
+                    variant="list"
+                    isSelected={selectedStore?._id === store._id}
+                    isHovered={hoveredStore?._id === store._id}
+                    onClick={() => handleStoreCardClick(store)}
+                  />
+                </div>
+              ))}
+            </div>
           ) : (
-            <div className="text-center py-8">
-              <p className="text-gray-600 mb-2">No stores found matching your criteria.</p>
-              <button
-                onClick={clearFilters}
-                className="text-earth-sage-600 hover:text-earth-sage-700"
-              >
-                Clear filters
-              </button>
+            <div className="text-center py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No stores found</h3>
+              <p className="text-gray-600 mb-4">
+                {hasActiveFilters 
+                  ? "Try adjusting your filters to see more results."
+                  : "No stores match your current criteria."
+                }
+              </p>
+              {hasActiveFilters && (
+                <button
+                  onClick={clearFilters}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-earth-sage-600 text-white rounded-lg hover:bg-earth-sage-700 transition-colors duration-200"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Clear all filters
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -275,10 +434,21 @@ export default function DiscoveryMapPage() {
       <div className="w-full md:w-2/3 lg:w-3/5 relative">
         <MapComponent
           stores={filteredStores}
+          allStores={stores}
           selectedStore={selectedStore}
-          onStoreSelect={setSelectedStore}
+          hoveredStore={hoveredStore}
+          onStoreSelect={handleMapStoreSelect}
+          onStoreHover={setHoveredStore}
         />
       </div>
+      
+      {/* Store Detail Panel */}
+      {detailPanelStore && (
+        <StoreDetailPanel 
+          store={detailPanelStore} 
+          onClose={handleCloseDetailPanel}
+        />
+      )}
     </div>
   )
 }
