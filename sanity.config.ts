@@ -4,7 +4,6 @@ import { visionTool } from '@sanity/vision'
 import { colorInput } from '@sanity/color-input'
 
 import { schemaTypes } from './sanity/schemas'
-import { defaultDocumentNode } from './sanity/preview.tsx'
 
 // Environment variables for Sanity
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '6hwn9xgi'
@@ -21,7 +20,6 @@ export default defineConfig({
   
   plugins: [
     structureTool({
-      defaultDocumentNode,
       structure: (S) =>
         S.list()
           .title('Content')

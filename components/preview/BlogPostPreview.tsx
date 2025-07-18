@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import { Badge } from '@/components/ui'
 import { BlogPost } from '@/lib/types'
+import { urlFor } from '@/lib/sanity/client'
 
 interface BlogPostPreviewProps {
   documentId: string
@@ -279,7 +280,7 @@ export default function BlogPostPreview({ documentId, slug }: BlogPostPreviewPro
       {post.featuredImage && (
         <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden mb-8">
           <Image
-            src={post.featuredImage}
+            src={urlFor(post.featuredImage).width(800).height(400).url()}
             alt={post.title}
             fill
             className="object-cover"

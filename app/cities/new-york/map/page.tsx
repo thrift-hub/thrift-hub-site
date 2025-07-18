@@ -6,8 +6,10 @@ import { getStoresByCity, getAllCategories, getNeighborhoodsByCity, getRegionsBy
 import { Store, Category, Neighborhood } from '@/lib/types'
 import { StoreCard } from '@/components/store/StoreCard'
 import { StoreDetailPanel } from '@/components/store/StoreDetailPanel'
-import { Select, Input, Button, Badge } from '@/components/ui'
+import { Select, Button, Badge, Input } from '@/components/ui'
+import { AutocompleteInput, AutocompleteOption } from '@/components/ui/AutocompleteInput'
 import MapComponent from '@/components/map/MapComponent'
+import { categoryConfig } from '@/components/map/MapMarker'
 
 type Region = {
   _id: string
@@ -33,6 +35,7 @@ export default function DiscoveryMapPage() {
   const [isFilteringStores, setIsFilteringStores] = useState(false)
   const [detailPanelStore, setDetailPanelStore] = useState<Store | null>(null)
   const [activeFilterTab, setActiveFilterTab] = useState<'categories' | 'regions'>('categories')
+  const [sortBy, setSortBy] = useState<'alphabetical' | 'rating' | 'distance'>('alphabetical')
   // Load initial data
   useEffect(() => {
     async function loadData() {
@@ -79,12 +82,26 @@ export default function DiscoveryMapPage() {
     loadData()
   }, [searchParams])
   
-  // Memoized filtering logic - runs client-side only
+  // NYC center coordinates for distance calculation
+  const nycCenter = { lat: 40.7128, lng: -74.0060 }
+  
+  // Helper function to calculate distance between two points (Haversine formula)
+  const calculateDistance = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
+    const R = 3959 // Earth's radius in miles
+    const dLat = (lat2 - lat1) * (Math.PI / 180)
+    const dLng = (lng2 - lng1) * (Math.PI / 180)
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    return R * c // Distance in miles
+  }
+
+  // Memoized filtering and sorting logic - runs client-side only
   const filteredStores = useMemo(() => {
     if (!stores.length) return []
     
     let filtered = stores // Start with all loaded stores
-    
     
     // Apply category, neighborhood, and region filters if any are selected
     if (selectedCategories.length > 0 || selectedNeighborhoods.length > 0 || selectedRegions.length > 0) {
@@ -117,7 +134,7 @@ export default function DiscoveryMapPage() {
       })
     }
     
-    // Apply search query last
+    // Apply search query
     if (searchQuery) {
       const query = searchQuery.toLowerCase()
       filtered = filtered.filter(store =>
@@ -126,8 +143,35 @@ export default function DiscoveryMapPage() {
         store.neighborhood.name.toLowerCase().includes(query)
       )
     }
-    return filtered
-  }, [stores, selectedCategories, selectedNeighborhoods, selectedRegions, searchQuery])
+    
+    // Apply sorting
+    const sorted = [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case 'alphabetical':
+          return a.name.localeCompare(b.name)
+        
+        case 'rating':
+          const ratingA = a.metrics?.rating || 0
+          const ratingB = b.metrics?.rating || 0
+          // Sort by rating descending (highest first)
+          if (ratingB !== ratingA) return ratingB - ratingA
+          // If ratings are equal, sort by review count descending
+          const reviewsA = a.metrics?.userRatingsTotal || 0
+          const reviewsB = b.metrics?.userRatingsTotal || 0
+          return reviewsB - reviewsA
+        
+        case 'distance':
+          const distanceA = calculateDistance(nycCenter.lat, nycCenter.lng, a.location.lat, a.location.lng)
+          const distanceB = calculateDistance(nycCenter.lat, nycCenter.lng, b.location.lat, b.location.lng)
+          return distanceA - distanceB
+        
+        default:
+          return 0
+      }
+    })
+    
+    return sorted
+  }, [stores, selectedCategories, selectedNeighborhoods, selectedRegions, searchQuery, sortBy])
 
   // Simple effect to show filtering animation
   useEffect(() => {
@@ -215,6 +259,63 @@ export default function DiscoveryMapPage() {
     if (selectedRegions.length === 0) return neighborhoods
     return neighborhoods.filter(n => selectedRegions.includes(n.region?.slug?.current))
   }, [neighborhoods, selectedRegions])
+
+  // Create autocomplete options from available data
+  const autocompleteOptions = useMemo((): AutocompleteOption[] => {
+    const options: AutocompleteOption[] = []
+
+    // Add store names
+    stores.forEach(store => {
+      options.push({
+        id: `store-${store._id}`,
+        label: store.name,
+        category: 'Store',
+        value: store.name
+      })
+    })
+
+    // Add neighborhoods
+    neighborhoods.forEach(neighborhood => {
+      options.push({
+        id: `neighborhood-${neighborhood._id}`,
+        label: neighborhood.name,
+        category: 'Neighborhood',
+        value: neighborhood.name
+      })
+    })
+
+    // Add regions
+    regions.forEach(region => {
+      options.push({
+        id: `region-${region._id}`,
+        label: region.name,
+        category: 'Region',
+        value: region.name
+      })
+    })
+
+    // Add categories
+    categories.forEach(category => {
+      options.push({
+        id: `category-${category._id}`,
+        label: category.name,
+        category: 'Category',
+        value: category.name
+      })
+    })
+
+    // Add category types from smart categorization
+    Object.entries(categoryConfig).forEach(([key, config]) => {
+      options.push({
+        id: `category-type-${key}`,
+        label: config.name,
+        category: 'Store Type',
+        value: config.name.toLowerCase()
+      })
+    })
+
+    return options
+  }, [stores, neighborhoods, regions, categories])
   
   return (
     <div className="flex h-[calc(100vh-4rem)] bg-gray-50">
@@ -234,29 +335,68 @@ export default function DiscoveryMapPage() {
           </div>
           
           {/* Search */}
-          <div className="relative mb-4">
-            <Input
-              type="search"
-              placeholder="Search stores, neighborhoods..."
+          <div className="mb-4">
+            <AutocompleteInput
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500 focus:border-earth-sage-500"
+              onChange={setSearchQuery}
+              options={autocompleteOptions}
+              placeholder="Search stores, neighborhoods..."
+              onSelect={(option) => {
+                // Handle different types of selections
+                if (option.id.startsWith('store-')) {
+                  // Find and select the store
+                  const store = stores.find(s => s.name === option.value)
+                  if (store) {
+                    handleStoreCardClick(store)
+                  }
+                } else if (option.id.startsWith('neighborhood-')) {
+                  // Add neighborhood to filter
+                  const neighborhood = neighborhoods.find(n => n.name === option.value)
+                  if (neighborhood && !selectedNeighborhoods.includes(neighborhood.slug.current)) {
+                    setSelectedNeighborhoods([...selectedNeighborhoods, neighborhood.slug.current])
+                    setActiveFilterTab('regions')
+                  }
+                  setSearchQuery('')
+                } else if (option.id.startsWith('region-')) {
+                  // Add region to filter
+                  const region = regions.find(r => r.name === option.value)
+                  if (region && !selectedRegions.includes(region.slug.current)) {
+                    setSelectedRegions([...selectedRegions, region.slug.current])
+                    setActiveFilterTab('regions')
+                  }
+                  setSearchQuery('')
+                } else if (option.id.startsWith('category-')) {
+                  // Add category to filter
+                  const category = categories.find(c => c.name === option.value)
+                  if (category && !selectedCategories.includes(category.slug.current)) {
+                    setSelectedCategories([...selectedCategories, category.slug.current])
+                    setActiveFilterTab('categories')
+                  }
+                  setSearchQuery('')
+                } else if (option.id.startsWith('category-type-')) {
+                  // Handle smart category types - keep as search query
+                  setSearchQuery(option.value)
+                }
+              }}
+              className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500 focus:border-earth-sage-500"
             />
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
+          </div>
+          
+          {/* Sort Options */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Sort by
+            </label>
+            <Select
+              options={[
+                { value: 'alphabetical', label: 'A-Z (Alphabetical)' },
+                { value: 'rating', label: '⭐ Highest Rated' },
+                { value: 'distance', label: '📍 Closest to Manhattan' }
+              ]}
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as 'alphabetical' | 'rating' | 'distance')}
+              className="transition-all duration-200 focus:ring-2 focus:ring-earth-sage-500"
+            />
           </div>
           
           {/* Filter Tabs */}
@@ -430,10 +570,15 @@ export default function DiscoveryMapPage() {
           )}
           
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-600 transition-all duration-300">
-              <span className="font-medium">{filteredStores.length}</span> 
-              {filteredStores.length === 1 ? ' store' : ' stores'} found
-            </p>
+            <div className="flex flex-col">
+              <p className="text-sm text-gray-600 transition-all duration-300">
+                <span className="font-medium">{filteredStores.length}</span> 
+                {filteredStores.length === 1 ? ' store' : ' stores'} found
+              </p>
+              <p className="text-xs text-gray-500">
+                Sorted by {sortBy === 'alphabetical' ? 'A-Z' : sortBy === 'rating' ? 'rating' : 'distance'}
+              </p>
+            </div>
             {hasActiveFilters && (
               <div className="flex items-center gap-1 text-xs text-earth-sage-600">
                 <div className="w-2 h-2 bg-earth-sage-500 rounded-full animate-pulse"></div>
@@ -487,29 +632,37 @@ export default function DiscoveryMapPage() {
             </div>
           ) : filteredStores.length > 0 ? (
             <div className="space-y-4">
-              {filteredStores.map((store, index) => (
-                <div
-                  key={store._id}
-                  onMouseEnter={() => setHoveredStore(store)}
-                  onMouseLeave={() => setHoveredStore(null)}
-                  className={`transition-all duration-200 ease-in-out transform animate-in fade-in slide-in-from-bottom-4 ${
-                    selectedStore?._id === store._id 
-                      ? 'ring-2 ring-earth-sage-500 shadow-lg scale-[1.02]' 
-                      : hoveredStore?._id === store._id
-                      ? 'shadow-md scale-[1.01] bg-gray-50'
-                      : 'hover:shadow-md hover:scale-[1.01] hover:bg-gray-50'
-                  }`}
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <StoreCard 
-                    store={store} 
-                    variant="list"
-                    isSelected={selectedStore?._id === store._id}
-                    isHovered={hoveredStore?._id === store._id}
-                    onClick={() => handleStoreCardClick(store)}
-                  />
-                </div>
-              ))}
+              {filteredStores.map((store, index) => {
+                // Calculate distance if sorting by distance
+                const storeDistance = sortBy === 'distance' 
+                  ? calculateDistance(nycCenter.lat, nycCenter.lng, store.location.lat, store.location.lng)
+                  : undefined
+                
+                return (
+                  <div
+                    key={store._id}
+                    onMouseEnter={() => setHoveredStore(store)}
+                    onMouseLeave={() => setHoveredStore(null)}
+                    className={`transition-all duration-200 ease-in-out transform animate-in fade-in slide-in-from-bottom-4 ${
+                      selectedStore?._id === store._id 
+                        ? 'ring-2 ring-earth-sage-500 shadow-lg scale-[1.02]' 
+                        : hoveredStore?._id === store._id
+                        ? 'shadow-md scale-[1.01] bg-gray-50'
+                        : 'hover:shadow-md hover:scale-[1.01] hover:bg-gray-50'
+                    }`}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <StoreCard 
+                      store={store} 
+                      variant="list"
+                      isSelected={selectedStore?._id === store._id}
+                      isHovered={hoveredStore?._id === store._id}
+                      onClick={() => handleStoreCardClick(store)}
+                      distance={storeDistance}
+                    />
+                  </div>
+                )
+              })}
             </div>
           ) : (
             <div className="text-center py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -551,6 +704,22 @@ export default function DiscoveryMapPage() {
           onStoreSelect={handleMapStoreSelect}
           onStoreHover={setHoveredStore}
         />
+        
+        {/* Map Legend */}
+        <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 p-3 max-w-xs">
+          <h4 className="font-semibold text-gray-900 mb-2 text-sm">Store Categories</h4>
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            {Object.entries(categoryConfig).map(([key, config]) => (
+              <div key={key} className="flex items-center gap-2">
+                <div 
+                  className="w-3 h-3 rounded-full border border-white shadow-sm"
+                  style={{ backgroundColor: config.color, opacity: 0.9 }}
+                />
+                <span className="text-gray-700">{config.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       
       {/* Store Detail Panel */}

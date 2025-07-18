@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useMemo } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { Store } from '@/lib/types'
+import { categorizeStore, categoryConfig } from './MapMarker'
 
 // Set your Mapbox token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''
@@ -119,23 +120,22 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
           return
         }
         
-        // Create custom marker element
+        // Get category configuration for this store
+        const category = categorizeStore(store)
+        const config = categoryConfig[category]
+        
+        // Create simple colored marker element
         const el = document.createElement('div')
         el.className = 'custom-marker'
-        el.style.width = '30px'
-        el.style.height = '30px'
-        el.style.backgroundImage = 'url(/images/map-pin.svg)'
-        el.style.backgroundSize = 'contain'
+        el.style.width = '20px'
+        el.style.height = '20px'
+        el.style.backgroundColor = config.color
+        el.style.borderRadius = '50%'
+        el.style.border = '3px solid white'
+        el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)'
         el.style.cursor = 'pointer'
-        el.style.transition = 'width 0.2s ease-out, height 0.2s ease-out'
-        
-        // If no custom pin image, use a colored div
-        if (!el.style.backgroundImage) {
-          el.style.backgroundColor = '#6d8c76'
-          el.style.borderRadius = '50%'
-          el.style.border = '3px solid white'
-          el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)'
-        }
+        el.style.transition = 'all 0.2s ease-out'
+        el.style.opacity = '0.9'
         
         try {
           // Create marker
@@ -144,10 +144,13 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
             .setPopup(
               new mapboxgl.Popup({ offset: 25 })
                 .setHTML(`
-                  <div class="p-2">
-                    <h3 class="font-semibold">${store.name}</h3>
+                  <div class="p-3">
+                    <h3 class="font-semibold text-gray-900">${store.name}</h3>
                     <p class="text-sm text-gray-600">${store.neighborhood.name}</p>
-                    <p class="text-sm mt-1">${store.primaryCategory.name}</p>
+                    <div class="flex items-center gap-2 mt-2">
+                      <div style="width: 12px; height: 12px; background-color: ${config.color}; border-radius: 50%; opacity: 0.9;"></div>
+                      <span class="text-sm font-medium" style="color: ${config.color}">${config.name}</span>
+                    </div>
                   </div>
                 `)
             )
@@ -233,13 +236,15 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
       
       // Simple hover scaling - make marker larger when hovered
       if (isHovered) {
-        markerElement.style.width = '36px'
-        markerElement.style.height = '36px'
+        markerElement.style.width = '28px'
+        markerElement.style.height = '28px'
         markerElement.style.zIndex = '50'
+        markerElement.style.opacity = '1'
       } else {
-        markerElement.style.width = '30px'
-        markerElement.style.height = '30px'
+        markerElement.style.width = '20px'
+        markerElement.style.height = '20px'
         markerElement.style.zIndex = '1'
+        markerElement.style.opacity = '0.9'
       }
     })
   }, [hoveredStore])

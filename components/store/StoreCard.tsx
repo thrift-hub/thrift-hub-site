@@ -28,9 +28,10 @@ interface StoreCardProps {
   isSelected?: boolean
   isHovered?: boolean
   onClick?: () => void
+  distance?: number // Distance in miles
 }
 
-export const StoreCard: FC<StoreCardProps> = ({ store, variant = 'grid', isSelected = false, isHovered = false, onClick }) => {
+export const StoreCard: FC<StoreCardProps> = ({ store, variant = 'grid', isSelected = false, isHovered = false, onClick, distance }) => {
   const imageUrl = store.featuredImage
     ? urlFor(store.featuredImage).width(400).height(300).url()
     : getStoreImage(store._id)
@@ -89,6 +90,14 @@ export const StoreCard: FC<StoreCardProps> = ({ store, variant = 'grid', isSelec
                 <span className="text-yellow-500">★</span>
                 <span className="text-sm text-gray-500">
                   ({store.metrics.userRatingsTotal})
+                </span>
+              </div>
+            )}
+            {distance && (
+              <div className="flex items-center gap-1">
+                <span className="text-xs text-gray-500">📍</span>
+                <span className="text-xs text-gray-500">
+                  {distance.toFixed(1)} mi
                 </span>
               </div>
             )}
