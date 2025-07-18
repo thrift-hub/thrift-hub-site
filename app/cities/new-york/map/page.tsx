@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { getAllStores, getAllCategories, getAllNeighborhoods, filterStores } from '@/lib/data/local-store-service'
+import { getStoresByCity, getAllCategories, getNeighborhoodsByCity, filterStores } from '@/lib/data/local-store-service'
 import { Store, Category, Neighborhood } from '@/lib/types'
 import { StoreCard } from '@/components/store/StoreCard'
 import { Select, Input, Button, Badge } from '@/components/ui'
@@ -26,10 +26,13 @@ export default function DiscoveryMapPage() {
     async function loadData() {
       setIsLoading(true)
       try {
+        // Get city slug from the URL path
+        const citySlug = 'new-york' // Since this is /cities/new-york/map
+        
         const [storesData, categoriesData, neighborhoodsData] = await Promise.all([
-          getAllStores(),
+          getStoresByCity(citySlug),
           getAllCategories(),
-          getAllNeighborhoods(),
+          getNeighborhoodsByCity(citySlug),
         ])
         
         setStores(storesData)
@@ -50,7 +53,10 @@ export default function DiscoveryMapPage() {
         }
         if (storesParam) {
           const storeIds = storesParam.split(',')
-          const filtered = await filterStores({ storeIds })
+          const filtered = await filterStores({ 
+            storeIds,
+            citySlug: 'new-york' // Filter to only NYC stores
+          })
           setFilteredStores(filtered)
         }
       } catch (error) {
@@ -83,6 +89,7 @@ export default function DiscoveryMapPage() {
         filtered = await filterStores({
           categories: selectedCategories,
           neighborhoods: selectedNeighborhoods,
+          citySlug: 'new-york', // Filter to only NYC stores
         })
         
         // Re-apply search query if needed
