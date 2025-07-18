@@ -21,8 +21,6 @@ export default function DiscoveryMapPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [selectedStore, setSelectedStore] = useState<Store | null>(null)
-  
-  
   // Load initial data
   useEffect(() => {
     async function loadData() {

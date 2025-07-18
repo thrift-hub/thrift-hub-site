@@ -221,8 +221,6 @@ export default function MapComponent({ stores, selectedStore, onStoreSelect }: M
           <div className="text-6xl mb-4">🗺️</div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Map Not Available</h3>
           <p className="text-sm text-gray-600 max-w-md">{mapError}</p>
-          <p className="text-xs text-gray-500 mt-2">Token: {mapboxgl.accessToken ? 'Present' : 'Missing'}</p>
-          <p className="text-xs text-gray-500">Stores: {stores.length}</p>
         </div>
       </div>
     )
