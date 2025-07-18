@@ -138,22 +138,9 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
         el.style.opacity = '0.9'
         
         try {
-          // Create marker
+          // Create marker without popup (details shown in side panel instead)
           const marker = new mapboxgl.Marker(el)
             .setLngLat([store.location.lng, store.location.lat])
-            .setPopup(
-              new mapboxgl.Popup({ offset: 25 })
-                .setHTML(`
-                  <div class="p-3">
-                    <h3 class="font-semibold text-gray-900">${store.name}</h3>
-                    <p class="text-sm text-gray-600">${store.neighborhood.name}</p>
-                    <div class="flex items-center gap-2 mt-2">
-                      <div style="width: 12px; height: 12px; background-color: ${config.color}; border-radius: 50%; opacity: 0.9;"></div>
-                      <span class="text-sm font-medium" style="color: ${config.color}">${config.name}</span>
-                    </div>
-                  </div>
-                `)
-            )
           
           // Create marker but don't add to map yet (filtering will control visibility)
           if (map.current) {
@@ -267,11 +254,7 @@ export default function MapComponent({ stores, allStores, selectedStore, hovered
           duration: 800,
         })
         
-        // Open popup for selected marker
-        const marker = markers.current[selectedStore._id]
-        if (marker) {
-          marker.togglePopup()
-        }
+        // Note: Popup removed per user request - store details shown in side panel instead
       } catch (error) {
         // Silently handle selected store errors
       }
